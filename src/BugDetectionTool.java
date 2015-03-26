@@ -15,7 +15,9 @@ import java.util.List;
 
 public class BugDetectionTool {
     
-    private String bitcode;
+    // Testing 1, 2, 3...
+	
+	private String bitcode;
     private int support;
     private int confidence;
     private String interProceduralFunction;
