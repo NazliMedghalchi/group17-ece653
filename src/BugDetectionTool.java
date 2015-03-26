@@ -14,8 +14,6 @@ import java.util.Hashtable;
 import java.util.List;
 
 public class BugDetectionTool {
-    
-    // Testing 1, 2, 3...
 	
 	private String bitcode;
     private int support;
