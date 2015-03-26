@@ -114,7 +114,12 @@ public class BugDetectionTool {
         for (int i = 0; i< functions.size(); i++){
             for (int j = i+1; j< functions.size(); j++){
                 Pair tempPair = new Pair(functions.get(i), functions.get(j));
-                functionsPairsTable.put(tempPair, 0);
+                if (functionsPairsTable.containsKey(tempPair)){
+                    int currentCount = functionsPairsTable.get(tempPair);
+                    functionsPairsTable.put(tempPair,currentCount+1);
+                } else{
+                    functionsPairsTable.put(tempPair, 1);
+                }
             }
         }
         System.out.println(functionsPairsTable); // DELETE LATER! For debugging only
