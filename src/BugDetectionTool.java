@@ -57,7 +57,7 @@ public class BugDetectionTool {
                     // Call inter- function (part c)
                     break;
 
-            default:    System.err.println("Error: Wrong mnumber of arguments provided. Program exiting.");
+            default:    System.err.println("Error: Wrong number of arguments provided. Program exiting.");
                         System.exit(-1);
         }
     }
