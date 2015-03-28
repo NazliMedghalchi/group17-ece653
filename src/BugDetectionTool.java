@@ -15,138 +15,103 @@ import java.util.List;
 
 public class BugDetectionTool {
 	
-	private String bitcode;
+    private String bitcode;
     private int support;
     private int confidence;
-    private String interProceduralFunction;
+    private String interProceduralFunction; // variable type may need to be changed 
     
-    Hashtable<String, Integer> functionsTable = new Hashtable<String, Integer>();
-    Hashtable<Pair, Integer> functionsPairsTable = new Hashtable<Pair, Integer>();
+    private Hashtable<String, HashSet<String>> functionsToNodesTable = new Hashtable<String, HashSet<String>>();
+    private Hashtable<Pair, HashSet<String>> functionsPairsToNodesTable = new Hashtable<Pair, HashSet<String>>();
+    private Hashtable<String, HashSet<String>> nodesToFunctionsTable = new Hashtable<String, HashSet<String>>();
 
-    //Parse the arguments of the main function
-    public void parseArgs(String[] args)   {
-        if (/*args.length == 2 ||*/ args.length > 4) {
-            /* It is not possible to do intra-procedural analysis with two arguments.
-             * Considering the first argument should always be the bitcode file,
-             * if there is only one argument after that, it is either the optional
-             * argument for inter-procedural, or just one integer which is not possible
-             * to determine whether it is intended for support or confidence.
-             * 
-             * But what about the case where we want to do inter-prodecural with default support
-             * and confidence? that would only have 2 arguments... */
-        	
-        	//-------------------------------------------------------------------------------------
-        	// This is my suggested fix:
-        	
-        	/* Parses the arguments and checks for any kind of error in the
-        	 * format of arguments. Returns an integer array in the following format:
-        	 * {support, confidence, inter} where inter is a 0 or 1 value determining
-        	 * whether we are doing intra- or inter-procedural analysis.
-        	 * Assumption: the format of the arguments is correct e.g. no negatives. 	
-        	private static void parseArgs(String[] args)   {
-                bitcode = args[0];
-            	
-                switch (args.length) {
-                	case 1: support = 3;
-                    		confidence = 65;
-                    		// Call intra- function
-                    		break;
-                	
-                	case 2: support = 3;
-            				confidence = 65;
-            				//Call inter- function
-            				break;
-                	
-                	case 3: support = Integer.parseInt(args[1]);
-            				confidence = Integer.parseInt(args[2]);
-            				// Call intra- function
-            				break;
-                	
-                	case 4: support = Integer.parseInt(args[1]);
-        					confidence = Integer.parseInt(args[2]);
-        					// Call inter- function
-        					break;
-        					
-        			default: System.err.println("Error: Wrong mnumber of arguments provided. Program exiting.");
-                    		 System.exit(-1);
-                    		
-                }
-            } */
-        	System.err.println("Error: Wrong mnumber of arguments provided. Program exiting.");
-            System.exit(-1);
-        }
-        
+//  Parse the arguments of the main function and checks for the correct number of arguments
+//  For inter-procedural analysis, the program can have either 2 or 4 arguments. 
+//  - With 2 arguments, the default support and confidence values will be used, 
+//  and the 2nd argument  will tell the program its an InterProcedural Analysis. 
+//  - With 4 arguments, the 4th argument will tell the program that 
+//  Inter-Procedural analysis is being called.
+    
+    public void parseArgs(String[] args) { //CHECK FOR FORMAT OF ARGUMENTS, CORRECT VALUES, NO NEGATIVES, ETC!
         bitcode = args[0];
         
-        if (args.length == 1) {
-            support = 3;
-            confidence = 65;
-        } else {
-            support = Integer.parseInt(args[1]);
-            confidence = Integer.parseInt(args[2]);
+        switch (args.length) {
+            case 1: support = 3;
+                    confidence = 65;
+                    // Call intra- function (part a)
+                    break;
+
+            case 2: support = 3;
+                    confidence = 65;
+                    interProceduralFunction = args[1];
+                    //Call inter- function (part c)
+                    break;
+
+            case 3: support = Integer.parseInt(args[1]);
+                    confidence = Integer.parseInt(args[2]);
+                    // Call intra- function (part a)
+                    break;
+
+            case 4: support = Integer.parseInt(args[1]);
+                    confidence = Integer.parseInt(args[2]);
+                    interProceduralFunction = args[3];
+                    // Call inter- function (part c)
+                    break;
+
+            default:    System.err.println("Error: Wrong mnumber of arguments provided. Program exiting.");
+                        System.exit(-1);
         }
-        
-        //Call the respective methods here - inter-procedural and intra-procedural
-        if (args.length == 1 || args.length == 3) {
-            //Call the part a method (Sadaf's) here 
-        }
-        else if (args.length == 4) {
-            interProceduralFunction = args[3];
-            //Call the part c method (Nazli's) here 
-        }
-        
     }
+        
     
     
-    //Use LLVM to generate call graph, then parse it
+//  This function uses LLVM to generate a call graph, then parses each line to getfunction and node names
+//  Functions and Nodes are then stored in the hashtables to be used in later functions.
     public void parseCallGraph() {
         
         String callGraphLine = null;
-        int lineNum = 0;
-        boolean newNode = false; 
+        String nodeName = "";
         HashSet<String> functionsInNode = new HashSet<String>();
+        State state = State.FIRST_LINE;
         
         try {
-            /* opt-3.0 is not recognized on ecelinux. I tried and I got "command not found"	
-             * error. But opt worked just fine. */
-        	Process p = Runtime.getRuntime().exec("opt-3.0 -print-callgraph " + bitcode);
-        	BufferedReader processOutput = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            Process p = Runtime.getRuntime().exec("opt-3.0 -print-callgraph " + bitcode);  //DELETE -3.0 when submitting/testing on ecelinux
+            BufferedReader processOutput = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             
-            while ((callGraphLine = processOutput.readLine()) != null) {
-                System.out.println("Line in callgraph: " + callGraphLine); // DELETE LATER! - For debugging only
-                
-                lineNum++;
-                
-                // Skip first line since its a global node and does not have a function name
-                if (lineNum == 1) {
-                    continue;
-                }
-                
-                //Trim empty white space before and after each line to skip empty lines
+            while((callGraphLine = processOutput.readLine()) != null) {
                 callGraphLine = callGraphLine.trim();
-                if (callGraphLine.isEmpty()) {
-                    newNode = true;
-                    continue;
-                }
-                
-                String[] tokens = callGraphLine.split("'");
-                if (newNode == true) {
-                    System.out.println("Funstions in the node:" + functionsInNode); // DELETE LATER! - For debugging only
-                    System.out.println("--"); // DELETE LATER! - For debugging only
-                    this.createPairs(functionsInNode);
-                    functionsInNode.clear();
-                    newNode = false;
-                    continue;
-                }
-                
-                //To avoid lines without function names e.g. external nodes
-                if (tokens.length < 2){
-                    continue;
-                }
-                String functionName = tokens[1];
-                functionsInNode.add(functionName);
-                
-            }
+                switch(state) {
+                    case FIRST_LINE:
+                        state = State.WAIT_FOR_FIRST_EMPTY_LINE; 
+                        break;
+                        
+                    case WAIT_FOR_FIRST_EMPTY_LINE: //callGraphLines within the first <null function> node are ignored
+                        if (callGraphLine.isEmpty()) state = State.SAVE_NODE_NAME;
+                        break;
+                        
+                    case SAVE_NODE_NAME:
+                        String[] nodeNameLine = callGraphLine.split("'");
+                        nodeName = nodeNameLine[1];
+                        state = State.SAVE_FUNCTIONS;
+                        break;
+                        
+                    case SAVE_FUNCTIONS:
+                        if (callGraphLine.isEmpty()) { // this node is now done being parsed
+                            this.insertFunctionsPairsToNodes(functionsInNode, nodeName);
+                            this.insertFunctionsToNodes(functionsInNode, nodeName);
+                            nodesToFunctionsTable.put(nodeName, new HashSet<String>(functionsInNode));
+                            functionsInNode.clear();
+                            state = State.SAVE_NODE_NAME;
+                            break;
+                        }
+                        String[] functionName = callGraphLine.split("'");
+                        if (functionName.length < 2) break; // to ignore the external nodes
+                        functionsInNode.add(functionName[1]);
+                        break;
+                }  
+            } // end of while (finished reading callgraph)
+                System.out.println("Function pairs to Nodes: " + functionsPairsToNodesTable); // DELETE LATER! For debugging only
+                System.out.println("FunctionsToNodes: " + functionsToNodesTable); // DELETE LATER! For debugging only 
+                System.out.println("NodesToFunctions: " + nodesToFunctionsTable); // DELETE LATER! For debugging only 
             
         } catch (IOException ex) {
             System.err.println("Error: Encountered exception while running opt command: " + ex.getMessage());
@@ -156,24 +121,44 @@ public class BugDetectionTool {
              
     }  
     
-    public void createPairs(HashSet<String> set){
+    
+//  Inserts into hash table 'functionsPairsToNodesTable' where function pairs within a node are the keys,
+//  and the nodes its being called in are the values
+//  This function also creates the pairs from the set of functions calls within the node
+    public void insertFunctionsPairsToNodes(HashSet<String> set, String nodeName){
         List<String> functions = new ArrayList<String>(set);
-        
         for (int i = 0; i< functions.size(); i++){
             for (int j = i+1; j< functions.size(); j++){
                 Pair tempPair = new Pair(functions.get(i), functions.get(j));
-                if (functionsPairsTable.containsKey(tempPair)){
-                    int currentCount = functionsPairsTable.get(tempPair);
-                    functionsPairsTable.put(tempPair,currentCount+1);
-                } else{
-                    functionsPairsTable.put(tempPair, 1);
-                }
+                if (! functionsPairsToNodesTable.containsKey(tempPair)){
+                    functionsPairsToNodesTable.put(tempPair, new HashSet<String>());
+                } 
+                functionsPairsToNodesTable.get(tempPair).add(nodeName); 
             }
         }
-        System.out.println("Function pairs: " + functionsPairsTable); // DELETE LATER! For debugging only
     }
     
     
+//  Inserts into hash table 'functionsToNodesTable' where function names are they keys,
+//  and the nodes its being called in are the values
+    public void insertFunctionsToNodes (HashSet<String> set, String nodeName) {
+        List<String> functions = new ArrayList<String>(set);
+        for (int i = 0; i< functions.size(); i++){
+            if (! functionsToNodesTable.containsKey(functions.get(i))){
+                functionsToNodesTable.put(functions.get(i), new HashSet<String>());
+            } 
+            functionsToNodesTable.get(functions.get(i)).add(nodeName); 
+        } 
+    }
+    
+    
+//  State machine used for parsing the call graph
+    private enum State {
+        FIRST_LINE, WAIT_FOR_FIRST_EMPTY_LINE, SAVE_NODE_NAME, SAVE_FUNCTIONS
+    }
+    
+    
+ // Class Pair defined, used for function pairs
     public class Pair {
         private final String left;
         private final String right;
@@ -218,7 +203,6 @@ public class BugDetectionTool {
         BugDetectionTool tool = new BugDetectionTool();
         tool.parseArgs(args);
         tool.parseCallGraph();
- 
     }
 
 }
