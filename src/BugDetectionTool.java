@@ -25,8 +25,54 @@ public class BugDetectionTool {
 
     //Parse the arguments of the main function
     public void parseArgs(String[] args)   {
-        if (args.length == 2 || args.length > 4) {
-            System.err.println("Error: Wrong mnumber of arguments provided. Program exiting.");
+        if (/*args.length == 2 ||*/ args.length > 4) {
+            /* It is not possible to do intra-procedural analysis with two arguments.
+             * Considering the first argument should always be the bitcode file,
+             * if there is only one argument after that, it is either the optional
+             * argument for inter-procedural, or just one integer which is not possible
+             * to determine whether it is intended for support or confidence.
+             * 
+             * But what about the case where we want to do inter-prodecural with default support
+             * and confidence? that would only have 2 arguments... */
+        	
+        	//-------------------------------------------------------------------------------------
+        	// This is my suggested fix:
+        	
+        	/* Parses the arguments and checks for any kind of error in the
+        	 * format of arguments. Returns an integer array in the following format:
+        	 * {support, confidence, inter} where inter is a 0 or 1 value determining
+        	 * whether we are doing intra- or inter-procedural analysis.
+        	 * Assumption: the format of the arguments is correct e.g. no negatives. 	
+        	private static void parseArgs(String[] args)   {
+                bitcode = args[0];
+            	
+                switch (args.length) {
+                	case 1: support = 3;
+                    		confidence = 65;
+                    		// Call intra- function
+                    		break;
+                	
+                	case 2: support = 3;
+            				confidence = 65;
+            				//Call inter- function
+            				break;
+                	
+                	case 3: support = Integer.parseInt(args[1]);
+            				confidence = Integer.parseInt(args[2]);
+            				// Call intra- function
+            				break;
+                	
+                	case 4: support = Integer.parseInt(args[1]);
+        					confidence = Integer.parseInt(args[2]);
+        					// Call inter- function
+        					break;
+        					
+        			default: System.err.println("Error: Wrong mnumber of arguments provided. Program exiting.");
+                    		 System.exit(-1);
+                    		
+                }
+            } */
+        	System.err.println("Error: Wrong mnumber of arguments provided. Program exiting.");
             System.exit(-1);
         }
         
@@ -40,11 +86,11 @@ public class BugDetectionTool {
             confidence = Integer.parseInt(args[2]);
         }
         
-        //Call the respective methods here - inter-prodedural and intra-procedural
+        //Call the respective methods here - inter-procedural and intra-procedural
         if (args.length == 1 || args.length == 3) {
             //Call the part a method (Sadaf's) here 
         }
-        else if (args.length == 4){
+        else if (args.length == 4) {
             interProceduralFunction = args[3];
             //Call the part c method (Nazli's) here 
         }
@@ -61,11 +107,13 @@ public class BugDetectionTool {
         HashSet<String> functionsInNode = new HashSet<String>();
         
         try {
-            Process p = Runtime.getRuntime().exec("opt-3.0 -print-callgraph " + bitcode);
-            BufferedReader processOutput = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            /* opt-3.0 is not recognized on ecelinux. I tried and I got "command not found"	
+             * error. But opt worked just fine. */
+        	Process p = Runtime.getRuntime().exec("opt-3.0 -print-callgraph " + bitcode);
+        	BufferedReader processOutput = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             
             while ((callGraphLine = processOutput.readLine()) != null) {
-                System.out.println(callGraphLine); // DELETE LATER! - For debugging only
+                System.out.println("Line in callgraph: " + callGraphLine); // DELETE LATER! - For debugging only
                 
                 lineNum++;
                 
@@ -83,7 +131,7 @@ public class BugDetectionTool {
                 
                 String[] tokens = callGraphLine.split("'");
                 if (newNode == true) {
-                    System.out.println(functionsInNode); // DELETE LATER! - For debugging only
+                    System.out.println("Funstions in the node:" + functionsInNode); // DELETE LATER! - For debugging only
                     System.out.println("--"); // DELETE LATER! - For debugging only
                     this.createPairs(functionsInNode);
                     functionsInNode.clear();
@@ -122,7 +170,7 @@ public class BugDetectionTool {
                 }
             }
         }
-        System.out.println(functionsPairsTable); // DELETE LATER! For debugging only
+        System.out.println("Function pairs: " + functionsPairsTable); // DELETE LATER! For debugging only
     }
     
     
