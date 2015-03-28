@@ -131,9 +131,9 @@ public class BugDetection {
     		String nodeName = keySetIterator.next();
     		HashSet<String> functionsInNode = new HashSet<String>();
     		getFunctionCalls(nodeName, level, functionsInNode, nodesToFunctionsTable);
-    		HashSet<String> set = nodesToFunctionsTable.get(nodeName);
-    		insertFunctionsPairsToNodes(set, nodeName);
-    		insertFunctionsToNodes(set, nodeName);
+    		System.out.println("output from recursuve: " + nodeName + " --> " + functionsInNode);
+    		insertFunctionsPairsToNodes(functionsInNode, nodeName);
+    		insertFunctionsToNodes(functionsInNode, nodeName);
     	}
     	System.out.println("Function pairs to Nodes: " + functionsPairsToNodesTable); // DELETE LATER! For debugging only
         System.out.println("FunctionsToNodes: " + functionsToNodesTable); // DELETE LATER! For debugging only 
