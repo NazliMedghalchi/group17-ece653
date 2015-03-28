@@ -20,15 +20,10 @@ public class BugDetectionTool {
     private int confidence;
     private String interProceduralFunction; // variable type may need to be changed 
     
-<<<<<<< HEAD
-    Hashtable<String, Integer> functionsTable = new Hashtable<String, Integer>();
-    Hashtable<Pair, Integer> functionsPairsTable = new Hashtable<Pair, Integer>();
-    Hashtable<String, HashSet<String>> scopesTable = new Hashtable<String, HashSet<String>>();
-=======
     private Hashtable<String, HashSet<String>> functionsToNodesTable = new Hashtable<String, HashSet<String>>();
     private Hashtable<Pair, HashSet<String>> functionsPairsToNodesTable = new Hashtable<Pair, HashSet<String>>();
     private Hashtable<String, HashSet<String>> nodesToFunctionsTable = new Hashtable<String, HashSet<String>>();
->>>>>>> origin/master
+
 
 //  Parse the arguments of the main function and checks for the correct number of arguments
 //  For inter-procedural analysis, the program can have either 2 or 4 arguments. 
