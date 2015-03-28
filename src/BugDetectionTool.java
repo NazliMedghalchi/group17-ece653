@@ -22,6 +22,7 @@ public class BugDetectionTool {
     
     Hashtable<String, Integer> functionsTable = new Hashtable<String, Integer>();
     Hashtable<Pair, Integer> functionsPairsTable = new Hashtable<Pair, Integer>();
+    Hashtable<String, HashSet<String>> scopesTable = new Hashtable<String, HashSet<String>>();
 
     //Parse the arguments of the main function
     public void parseArgs(String[] args)   {
