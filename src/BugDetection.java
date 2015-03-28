@@ -20,12 +20,13 @@ public class BugDetection {
     private String bitcode;
     private int support;
     private int confidence;
- // Determines the level of expansion for inter-procedural analysis.
- // level = 0 implies intra-procedural analysis.  
+ // Determines the level of expansion for inter-procedural analysis. level = 0 implies intra-procedural analysis.  
     private int level; 
-    
+ // A hash table with function names as keys and a hash set of nodes where the function have been  called as values.
     private Hashtable<String, HashSet<String>> functionsToNodesTable = new Hashtable<String, HashSet<String>>();
+ // A hash table with pairs of function names as keys and a hash set of nodes where the function pair have been  called as values.    
     private Hashtable<Pair, HashSet<String>> functionsPairsToNodesTable = new Hashtable<Pair, HashSet<String>>();
+ // A hash table with node names as keys and a hash set of functions that are called in the node as values. 
     private Hashtable<String, HashSet<String>> nodesToFunctionsTable = new Hashtable<String, HashSet<String>>();
 
 //  Parse the arguments of the main function and checks for the correct number of arguments
@@ -35,7 +36,7 @@ public class BugDetection {
 //  - With 4 arguments, the 4th argument will tell the program that 
 //  Inter-Procedural analysis is being called.
     
-    public void parseArgs(String[] args) { //CHECK FOR FORMAT OF ARGUMENTS, CORRECT VALUES, NO NEGATIVES, ETC!
+    private void parseArgs(String[] args) { //CHECK FOR FORMAT OF ARGUMENTS, CORRECT VALUES, NO NEGATIVES, ETC!
         bitcode = args[0];
         
         switch (args.length) {
@@ -69,7 +70,7 @@ public class BugDetection {
 //  This function uses LLVM to generate a call graph, then parses each line to get 
 //  the functions that are called in each node, and stores them in the 
 //  nodesToFunctionsTable hash table.
-    public void parseCallGraph() {
+    private void parseCallGraph() {
         
         String callGraphLine = null;
         String nodeName = "";
@@ -78,7 +79,7 @@ public class BugDetection {
         
         try {
         	//DELETE -3.0 when submitting/testing on ecelinux.
-        	Process p = Runtime.getRuntime().exec("opt-3.0 -print-callgraph " + bitcode);  
+        	Process p = Runtime.getRuntime().exec("opt -print-callgraph " + bitcode);  
             BufferedReader processOutput = new BufferedReader(new InputStreamReader(p.getErrorStream()));
             
             while((callGraphLine = processOutput.readLine()) != null) {
@@ -100,9 +101,8 @@ public class BugDetection {
                         
                     case SAVE_FUNCTIONS:
                         if (callGraphLine.isEmpty()) { // this node is now done being parsed
-                            //this.insertFunctionsPairsToNodes(functionsInNode, nodeName);
-                            //this.insertFunctionsToNodes(functionsInNode, nodeName);
                             nodesToFunctionsTable.put(nodeName, new HashSet<String>(functionsInNode));
+                            //System.out.println("functions in node----> " + functionsInNode);
                             functionsInNode.clear();
                             state = State.SAVE_NODE_NAME;
                             break;
@@ -111,10 +111,13 @@ public class BugDetection {
                         if (functionName.length < 2) break; // to ignore the external nodes
                         functionsInNode.add(functionName[1]);
                         break;
-                }  
+                }
+                //System.out.println("NodesToFunctions: " + nodesToFunctionsTable.size()); // DELETE LATER! For debugging only 
+                //System.out.println("Finished parsing ------> "+callGraphLine);
             } // end of while (finished reading callgraph)
-                System.out.println("NodesToFunctions: " + nodesToFunctionsTable); // DELETE LATER! For debugging only 
-            
+                //System.out.println("testing: "); // DELETE LATER! For debugging only 
+                //System.out.println("NodesToFunctions: " + nodesToFunctionsTable); // DELETE LATER! For debugging only 
+                //System.exit(0); 
         } catch (IOException ex) {
             System.err.println("Error: Encountered exception while running opt command: " + ex.getMessage());
             ex.printStackTrace();
@@ -124,36 +127,37 @@ public class BugDetection {
     }  
     
     
-    public void createDataStructure (Hashtable <String, HashSet<String>> nodesToFunctionsTable, int level) {
+ // This function iterates over the key set of nodesToFunctionsTable, and expands
+ // the nodes contained in each node to the desired level of expansion.
+ // Then, fills the functionsToNodesTable and functionPairsToNodesTable.
+    private void createDataStructure () {
     	Set<String> keySet = nodesToFunctionsTable.keySet();
     	Iterator<String> keySetIterator = keySet.iterator();
     	while (keySetIterator.hasNext()) {
     		String nodeName = keySetIterator.next();
     		HashSet<String> functionsInNode = new HashSet<String>();
-    		getFunctionCalls(nodeName, level, functionsInNode, nodesToFunctionsTable);
-    		System.out.println("output from recursuve: " + nodeName + " --> " + functionsInNode);
+    		getFunctionCalls(nodeName, level, functionsInNode);
     		insertFunctionsPairsToNodes(functionsInNode, nodeName);
     		insertFunctionsToNodes(functionsInNode, nodeName);
     	}
-    	System.out.println("Function pairs to Nodes: " + functionsPairsToNodesTable); // DELETE LATER! For debugging only
-        System.out.println("FunctionsToNodes: " + functionsToNodesTable); // DELETE LATER! For debugging only 
+    	//System.out.println("Function pairs to Nodes: " + functionsPairsToNodesTable); // DELETE LATER! For debugging only
+        //System.out.println("FunctionsToNodes: " + functionsToNodesTable); // DELETE LATER! For debugging only 
     }
     
-    public void getFunctionCalls(String nodeName, int level, HashSet<String> functionsInNode,
-    		Hashtable<String, HashSet<String>> nodesToFunctionsTable) {
+    private void getFunctionCalls(String nodeName, int level, HashSet<String> functionsInNode) {
     	if (level < 0) return;
     	Iterator<String> iter = nodesToFunctionsTable.get(nodeName).iterator();
     	while (iter.hasNext()) {
     		String function = iter.next();
     		functionsInNode.add(function);
-    		getFunctionCalls(function, level-1, functionsInNode, nodesToFunctionsTable);
+    		getFunctionCalls(function, level-1, functionsInNode);
     	}
     }
     
 //  Inserts into hash table 'functionsPairsToNodesTable' where function pairs within a node are the keys,
 //  and the nodes its being called in are the values
 //  This function also creates the pairs from the set of functions calls within the node
-    public void insertFunctionsPairsToNodes(HashSet<String> set, String nodeName){
+    private void insertFunctionsPairsToNodes(HashSet<String> set, String nodeName){
         List<String> functions = new ArrayList<String>(set);
         for (int i = 0; i< functions.size(); i++){
             for (int j = i+1; j< functions.size(); j++){
@@ -169,7 +173,7 @@ public class BugDetection {
     
 //  Inserts into hash table 'functionsToNodesTable' where function names are they keys,
 //  and the nodes its being called in are the values
-    public void insertFunctionsToNodes (HashSet<String> set, String nodeName) {
+    private void insertFunctionsToNodes (HashSet<String> set, String nodeName) {
         List<String> functions = new ArrayList<String>(set);
         for (int i = 0; i< functions.size(); i++){
             if (! functionsToNodesTable.containsKey(functions.get(i))){
@@ -187,7 +191,7 @@ public class BugDetection {
     
     
  // Class Pair defined, used for function pairs
-    public class Pair {
+    private class Pair {
         private final String left;
         private final String right;
 
@@ -220,19 +224,81 @@ public class BugDetection {
         public String toString(){
             return "("+ left + "," + right + ")";
         }
-
+        
     }
     
+    private void findBugs() {
+    	// Iterate over the keys in functionPairsToNodesTable
+    	Set<Pair> functionPairsKeySet = functionsPairsToNodesTable.keySet();
+    	Iterator<Pair> functionPairsKeySetIterator = functionPairsKeySet.iterator();
+    	while (functionPairsKeySetIterator.hasNext()) {
+    		Pair keyPair = functionPairsKeySetIterator.next();
+    		int pairSupport = functionsPairsToNodesTable.get(keyPair).size();
+    		//System.out.println("Support: " + pairSupport);////////////////////////////////////////////
+    		if (pairSupport >= support) {
+    			String function = keyPair.getLeft();
+        		//System.out.println("function being checked: " + function);
+			findBugs(function, keyPair, pairSupport);
+        		function = keyPair.getRight();
+        		//System.out.println("function being checked: " + function);
+			findBugs(function, keyPair, pairSupport);
+    		} 
+    	}
+    }
     
+    private void findBugs(String function, Pair keyPair, int pairSupport) {
+    	HashSet<String> functionScopes = functionsToNodesTable.get(function);	
+        //System.out.println("function scopes: " + functionScopes);
+    	HashSet<String> functionPairScopes = functionsPairsToNodesTable.get(keyPair);
+        //System.out.println("function pair scopes: " + functionPairScopes);
+    	int functionSupport = functionScopes.size();
+        //System.out.println("function support: " + functionSupport);
+    	// If pairSupport and functionSupport are equal, it means that the two functions in 
+    	// the pair are always called together --> no bug!
+    	if (functionSupport > pairSupport) {
+    		float bugConfidence = pairSupport / ((float)functionSupport) * 100;
+        	//System.out.println("bug confidence: " + bugConfidence);
+    		if (bugConfidence >= confidence) {
+    			// if confidence is greater than or equal to the threshold
+    			// --> there is a bug! Print it!
+    			Iterator<String> iter = functionScopes.iterator();
+    	    	while (iter.hasNext()) {
+    	    		String scope = iter.next();
+    	    		//System.out.println("scope being checked: " + scope);
+    	    		if (!functionPairScopes.contains(scope)) {
+    	    			// this is one scope where the function is called but the function pair
+    	    			// is not called --> this is the scope where the bug happens
+    	    			
+    	    			// Sort the functions in pair and add them to the bug report
+    	    			String leftFunction = keyPair.getLeft();
+    	    			String rightFunction = keyPair.getRight();
+    	    			int compare = leftFunction.compareTo(rightFunction);
+    	    			String firstFunctionInPair, secondFunctionInPair;
+    	    			if (compare <= 0){
+    	    				firstFunctionInPair = keyPair.getLeft();
+    	    				secondFunctionInPair = keyPair.getRight();
+    	    			} else {
+    	    				firstFunctionInPair = keyPair.getRight();
+    	    				secondFunctionInPair = keyPair.getLeft();
+    	    			}
+    	    			String bugReport = String.format("bug: %s in %s, pair: (%s, %s), "
+    	    					+ "support: %d, confidence: %.2f%%\n", function, scope,
+    	    					firstFunctionInPair, secondFunctionInPair, pairSupport, bugConfidence);
+    	    			System.out.println(bugReport);
+    	    		}
+    	    	}
+    		}
+    	}
+    }
     
     //Main function
-    public static void main(String[] args) {
-        
+    public static void main(String[] args) {    
         BugDetection tool = new BugDetection();
         tool.parseArgs(args);
         tool.parseCallGraph();
-    	tool.createDataStructure(tool.nodesToFunctionsTable, tool.level);
-        
+    	//System.out.println("Out of parser!");
+        tool.createDataStructure();
+    	tool.findBugs();
     }
 
 }
