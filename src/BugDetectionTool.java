@@ -24,6 +24,7 @@ public class BugDetectionTool {
     private Hashtable<Pair, HashSet<String>> functionsPairsToNodesTable = new Hashtable<Pair, HashSet<String>>();
     private Hashtable<String, HashSet<String>> nodesToFunctionsTable = new Hashtable<String, HashSet<String>>();
 
+
 //  Parse the arguments of the main function and checks for the correct number of arguments
 //  For inter-procedural analysis, the program can have either 2 or 4 arguments. 
 //  - With 2 arguments, the default support and confidence values will be used, 
