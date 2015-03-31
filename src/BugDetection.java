@@ -6,6 +6,7 @@ Nazli Medghalchi (20548504)- nmedghal@uwaterloo.ca
  */
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BugDetection {
 	
@@ -64,7 +67,7 @@ public class BugDetection {
                         System.exit(-1);
         }
     }
-        
+       
     
     
 //  This function uses LLVM to generate a call graph, then parses each line to get 
@@ -76,17 +79,19 @@ public class BugDetection {
         String nodeName = "";
         HashSet<String> functionsInNode = new HashSet<String>();
         State state = State.FIRST_LINE;
-        
+        int lineNum=0;
         try {
-        	//DELETE -3.0 when submitting/testing on ecelinux.
-        	Process p = Runtime.getRuntime().exec("opt -print-callgraph " + bitcode);  
-            BufferedReader processOutput = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            
+            //DELETE -3.0 when submitting/testing on ecelinux.
+            //Process p = Runtime.getRuntime().exec("opt-3.0 -print-callgraph " + bitcode);  
+            BufferedReader processOutput = new BufferedReader(new FileReader(bitcode));
             while((callGraphLine = processOutput.readLine()) != null) {
+               lineNum++;
                 callGraphLine = callGraphLine.trim();
                 switch(state) {
                     case FIRST_LINE:
-                        state = State.WAIT_FOR_FIRST_EMPTY_LINE; 
+                        //to ignore the warnings in the beginning
+                        if (lineNum == 7) state = State.WAIT_FOR_FIRST_EMPTY_LINE; 
+                        //else System.out.println(callGraphLine);
                         break;
                     // callGraphLines within the first <null function> node are ignored    
                     case WAIT_FOR_FIRST_EMPTY_LINE:
@@ -118,7 +123,7 @@ public class BugDetection {
                 //System.out.println("testing: "); // DELETE LATER! For debugging only 
                 //System.out.println("NodesToFunctions: " + nodesToFunctionsTable); // DELETE LATER! For debugging only 
                 //System.exit(0); 
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             System.err.println("Error: Encountered exception while running opt command: " + ex.getMessage());
             ex.printStackTrace();
             System.exit(-1);

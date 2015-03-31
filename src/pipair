@@ -1,2 +1,3 @@
 #!/bin/bash
-java BugDetection $@
+opt-3.0 -print-callgraph $1 2> callgraph.txt
+java BugDetection callgraph.txt $2 $3 $4
