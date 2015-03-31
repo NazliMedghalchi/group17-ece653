@@ -1,10 +1,14 @@
-CC = javac
-PROG = BugDetection
+JC = javac
+.SUFFIXES: .java .class
+.java.class:
+	$(JC) $*.java
 
-all: build
+CLASSES = \
+	BugDetection.java \
 
-build: $(PROG)
-	$(CC) $(PROG).java
+default: classes
+
+classes: $(CLASSES:.java=.class)
 
 clean:
-	-rm -f $(PROG).class
+	-rm -f *.class
