@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 public class BugDetection {
 	
-    private String bitcode;
+    private String callgraph;
     private int support;
     private int confidence;
  // Determines the level of expansion for inter-procedural analysis. level = 0 implies intra-procedural analysis.  
@@ -40,7 +40,7 @@ public class BugDetection {
 //  Inter-Procedural analysis is being called.
     
     private void parseArgs(String[] args) { //CHECK FOR FORMAT OF ARGUMENTS, CORRECT VALUES, NO NEGATIVES, ETC!
-        bitcode = args[0];
+        callgraph = args[0];
         
         switch (args.length) {
             case 1: support = 3;
@@ -78,18 +78,16 @@ public class BugDetection {
         String callGraphLine = null;
         String nodeName = "";
         HashSet<String> functionsInNode = new HashSet<String>();
-        State state = State.FIRST_LINE;
+        State state = State.IGNORE_FIRST_FEW_LINES;
         int lineNum=0;
         try {
-            //DELETE -3.0 when submitting/testing on ecelinux.
-            //Process p = Runtime.getRuntime().exec("opt-3.0 -print-callgraph " + bitcode);  
-            BufferedReader processOutput = new BufferedReader(new FileReader(bitcode));
+            BufferedReader processOutput = new BufferedReader(new FileReader(callgraph));
             while((callGraphLine = processOutput.readLine()) != null) {
                lineNum++;
                 callGraphLine = callGraphLine.trim();
                 switch(state) {
-                    case FIRST_LINE:
-                        //to ignore the warnings in the beginning
+                    //to ignore the warnings in the beginning
+                    case IGNORE_FIRST_FEW_LINES:
                         if (lineNum == 7) state = State.WAIT_FOR_FIRST_EMPTY_LINE; 
                         //else System.out.println(callGraphLine);
                         break;
@@ -191,7 +189,7 @@ public class BugDetection {
     
 //  State machine used for parsing the call graph
     private enum State {
-        FIRST_LINE, WAIT_FOR_FIRST_EMPTY_LINE, SAVE_NODE_NAME, SAVE_FUNCTIONS
+        IGNORE_FIRST_FEW_LINES, WAIT_FOR_FIRST_EMPTY_LINE, SAVE_NODE_NAME, SAVE_FUNCTIONS
     }
     
     
