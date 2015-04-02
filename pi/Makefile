@@ -1,22 +1,21 @@
-SRC = ./src
 BIN = ./bin
 JC = javac
 JFLAGS = -d $(BIN)
 	
-#Add source files here. Make sure to prepend with $(SRC)
 CLASSES = \
-	$(SRC)/BugDetection.java
+	BugDetection.java
 
-CLASS_FILES=$(CLASSES:$(SRC)/%.java=$(BIN)/%.class)
+CLASS_FILES=$(CLASSES:%.java=$(BIN)/%.class)
 	
 all: classes
 
 classes:
 	mkdir -p $(BIN)
+	chmod +x pipair
 	$(JC) $(JFLAGS) $(CLASSES) 
 	
 clean:
-	$(RM) $(BIN)/*.class
+	rm $(BIN)/*.class
 	
 run:
 	./pipair
