@@ -1,0 +1,5 @@
+*.iml
+**/*.iml
+./idea/*
+.DS_Store
+pi/bin
