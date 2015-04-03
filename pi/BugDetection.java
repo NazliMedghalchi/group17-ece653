@@ -18,6 +18,70 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/* This program will do a static analysis on a callgraph and report bugs based on likely invariant. For details,
+ refer to the project description.
+ These are the steps that the algorithm performs:
+ 
+ 1. Parsing the arguments and initializing the desired thresholds.
+ 2. Parsing the call graph and craeting a hashtable (nodesToFunctionsTable) that uses node names as keys, and the values are the names
+    of the functions that are called in each node. Lok at the following code example:
+    
+    Scope1 {
+        A;
+        B;
+    }
+ 
+    Scope2 {
+        Scope1;
+        B;
+        C;
+    }
+ 
+    For this example, the nodesToFunctionsTable hashtable will look like this:
+    <Scope1: A,B>, <Scope2: Scope1,B,C>
+ 
+ 
+ 3. Creating the data structure. In this step, the program iterates over the keys in nodesToFunctionsTable
+    and retrieves each node's function calls based on the desired leel of expansion. The default level is
+    zero (which implies intra-procedural analysis). For example, with level zero, this step will produce the following hashtables:
+ 
+    functionsToNodesTable         functionsPairsToNodesTable
+    <A: Scope1>                   <(A,B): Scope1>
+    <B: Scope1,Scope2>            <(B,C): Scope2>
+    <C: Scope2>                   <(Scope1,B): Scope2>
+    <Scope1: Scope2>              <(Scope1,C): Scope2>
+ 
+    With level 1 for expansion, the same hashtables would look lke this:
+ 
+    functionsToNodesTable         functionsPairsToNodesTable
+    <A: Scope1,Scope2>            <(A,B): Scope1,Scope2>
+    <B: Scope1,Scope2>            <(B,C): Scope2>
+    <C: Scope2>                   <(A,C): Scope2>
+ 
+    Note that in this case, Scope1 inside the Scope2 is not treated as a function anymore.
+
+ 4. Finding bugs using the two hashtables functionsToNodesTable and functionsPairsToNodesTable.
+    For each key in the functionsPairsToNodesTable, the program retreives the values and iterates over them.
+    If the pair has at least the desired support, it will retrieve the scope names for the left and right 
+    function in the pair from the functionsToNodesTable, and coross checks them with the scopes in the
+    functionsPairsToNodesTable, finds the bugs and reports the ones with at least the desires confidence.
+    In the above example (level zero), with confidence and support thresholds of 10% and 1 respectively,
+    the first iteration would be like this:
+ 
+    (A,B) --> Scope1         support{(A,B)} = 1  => proceed to find bugs
+    left function in (A,B) pair: A       from the functionsToNodesTable:       <A: Scope1>
+                                         from the functionsPairsToNodesTable:  <(A,B): Scope1>
+                        ===> NO BUG!
+    right function in (A,B) pair: B      from the functionsToNodesTable:       <B: Scope1, Scope2>
+                                         from the functionsPairsToNodesTable:  <(A,B): Scope1>
+                        ===> B in Scope 2 is bug with respect to (A,B) pair. Confidence is 50%.
+ 
+ 
+ */
+
+
+
 public class BugDetection {
 	
     private String callgraph;
@@ -33,13 +97,17 @@ public class BugDetection {
     private Hashtable<String, HashSet<String>> nodesToFunctionsTable = new Hashtable<String, HashSet<String>>();
 
 //  Parse the arguments of the main function and checks for the correct number of arguments
-//  For inter-procedural analysis, the program can have either 2 or 4 arguments. 
-//  - With 2 arguments, the default support and confidence values will be used, 
-//  and the 2nd argument  will tell the program its an InterProcedural Analysis. 
-//  - With 4 arguments, the 4th argument will tell the program that 
-//  Inter-Procedural analysis is being called.
-    
-    private void parseArgs(String[] args) { //CHECK FOR FORMAT OF ARGUMENTS, CORRECT VALUES, NO NEGATIVES, ETC!
+//  Considering that at least one argument (name of the callgraph file) is required, in case
+//  only one argument is provided, we can assume that all default values are used (support = 3,
+//  confidence = 65, and level of expansion = 0).
+//  the support and confidence arguments should not be provided or always provided together; otherwise, there is
+//  no way of telling the number is intended for which. Thus, in case we hace two arguments in total, we can assume
+//  that the first one is the callgraph, and the second one is the expansion level.
+//  With the sam ereasoning, in case we have three arguments, we assume the first one is the callgraph, second one
+//  the support threshold, and the third one confidence threshold.
+//  And finally, if we have four argments, all the variables are initialized as requested.
+//  IMPORTANT NOTE: we assume correct format of input e.g. user will not give us a negative number.
+    private void parseArgs(String[] args) {
         callgraph = args[0];
         
         switch (args.length) {
@@ -105,7 +173,6 @@ public class BugDetection {
                     case SAVE_FUNCTIONS:
                         if (callGraphLine.isEmpty()) { // this node is now done being parsed
                             nodesToFunctionsTable.put(nodeName, new HashSet<String>(functionsInNode));
-                            //System.out.println("functions in node----> " + functionsInNode);
                             functionsInNode.clear();
                             state = State.SAVE_NODE_NAME;
                             break;
@@ -140,6 +207,11 @@ public class BugDetection {
     	}
     }
     
+   
+  // This is a recursive function that expands scopes to desired level.
+  // It takes the scope name as an argument, retrieves the values for that scope, which is
+  // a set of function names, then iterates over those functions and retrives the functions called in each of them
+  // from the nodesToFunctionsTable, and adds them to the functionsInNode hash set.
     private void getFunctionCalls(String nodeName, int level, HashSet<String> functionsInNode) {
     	if (level < 0) return;
     	Iterator<String> iter = nodesToFunctionsTable.get(nodeName).iterator();
@@ -232,9 +304,9 @@ public class BugDetection {
     		int pairSupport = functionsPairsToNodesTable.get(keyPair).size();
     		if (pairSupport >= support) {
     			String function = keyPair.getLeft();
-			findBugs(function, keyPair, pairSupport);
+                findBugs(function, keyPair, pairSupport);
         		function = keyPair.getRight();
-			findBugs(function, keyPair, pairSupport);
+                findBugs(function, keyPair, pairSupport);
     		} 
     	}
     }
