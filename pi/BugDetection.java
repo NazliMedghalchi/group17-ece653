@@ -201,8 +201,11 @@ public class BugDetection {
     	while (keySetIterator.hasNext()) {
     		String nodeName = keySetIterator.next();
     		HashSet<String> functionsInNode = new HashSet<String>();
-    		getFunctionCalls(nodeName, level, functionsInNode);
-    		insertFunctionsPairsToNodes(functionsInNode, nodeName);
+    		if (!nodesToFunctionsTable.get(nodeName).isEmpty()) { 
+			Set<String> path = new HashSet<String>();
+			getFunctionCalls(nodeName, level, functionsInNode, path);
+		}
+                insertFunctionsPairsToNodes(functionsInNode, nodeName);
     		insertFunctionsToNodes(functionsInNode, nodeName);
     	}
     }
@@ -212,14 +215,20 @@ public class BugDetection {
   // It takes the scope name as an argument, retrieves the values for that scope, which is
   // a set of function names, then iterates over those functions and retrives the functions called in each of them
   // from the nodesToFunctionsTable, and adds them to the functionsInNode hash set.
-    private void getFunctionCalls(String nodeName, int level, HashSet<String> functionsInNode) {
-    	if (level < 0) return;
-    	Iterator<String> iter = nodesToFunctionsTable.get(nodeName).iterator();
+    private void getFunctionCalls(String nodeName, int level, HashSet<String> functionsInNode, Set<String> path) {
+    	if (path.contains(nodeName)) return; // Avoid loops.
+	Iterator<String> iter = nodesToFunctionsTable.get(nodeName).iterator();
+    	if (!iter.hasNext() || level < 0)  {
+		// Only add leaf nodes. 
+    		functionsInNode.add(nodeName);
+		return;
+	}
+	path.add(nodeName);
     	while (iter.hasNext()) {
     		String function = iter.next();
-    		functionsInNode.add(function);
-    		getFunctionCalls(function, level-1, functionsInNode);
+    		getFunctionCalls(function, level-1, functionsInNode, path);
     	}
+	path.remove(nodeName);
     }
     
 //  Inserts into hash table 'functionsPairsToNodesTable' where function pairs within a node are the keys,
