@@ -3,6 +3,8 @@ Group 17 - ECE 653
 Filza Mazahir (20295951) - fmazahir@uwaterloo.ca
 Sadaf Matinkhoo (20588163) - smatinkh@uwaterloo.ca
 Nazli Medghalchi (20548504)- nmedghal@uwaterloo.ca
+
+Part D
  */
 
 import java.io.BufferedReader;
@@ -20,69 +22,23 @@ import java.util.logging.Logger;
 
 
 /* This program will do a static analysis on a callgraph and report bugs based on likely invariant. For details,
- refer to the project description.
- These are the steps that the algorithm performs:
+ refer to the write up in proj_sub.pdf for part I (d).
  
- 1. Parsing the arguments and initializing the desired thresholds.
- 2. Parsing the call graph and craeting a hashtable (nodesToFunctionsTable) that uses node names as keys, and the values are the names
-    of the functions that are called in each node. Lok at the following code example:
-    
-    Scope1 {
-        A;
-        B;
-    }
+ This program is a modification of the BugDetection.java program written for part I (a). 
+ There are two algorithms being implemented:
  
-    Scope2 {
-        Scope1;
-        B;
-        C;
-    }
+ 1. Reduce False Positives:
+ To reduce false positives, the approach used here is to use a sliding confidence threshold. The T_CONFIDENCE
+ should increase based on the support of the function inverse exponentially. 
+ To use this algorithm, the 4th argument has to be 1.
  
-    For this example, the nodesToFunctionsTable hashtable will look like this:
-    <Scope1: A,B>, <Scope2: Scope1,B,C>
- 
- 
- 3. Creating the data structure. In this step, the program iterates over the keys in nodesToFunctionsTable
-    and retrieves each node's function calls based on the desired leel of expansion. The default level is
-    zero (which implies intra-procedural analysis). For example, with level zero, this step will produce the following hashtables:
- 
-    functionsToNodesTable         functionsPairsToNodesTable
-    <A: Scope1>                   <(A,B): Scope1>
-    <B: Scope1,Scope2>            <(B,C): Scope2>
-    <C: Scope2>                   <(Scope1,B): Scope2>
-    <Scope1: Scope2>              <(Scope1,C): Scope2>
- 
-    With level 1 for expansion, the same hashtables would look lke this:
- 
-    functionsToNodesTable         functionsPairsToNodesTable
-    <A: Scope1,Scope2>            <(A,B): Scope1,Scope2>
-    <B: Scope1,Scope2>            <(B,C): Scope2>
-    <C: Scope2>                   <(A,C): Scope2>
- 
-    Note that in this case, Scope1 inside the Scope2 is not treated as a function anymore.
-
- 4. Finding bugs using the two hashtables functionsToNodesTable and functionsPairsToNodesTable.
-    For each key in the functionsPairsToNodesTable, the program retreives the values and iterates over them.
-    If the pair has at least the desired support, it will retrieve the scope names for the left and right 
-    function in the pair from the functionsToNodesTable, and coross checks them with the scopes in the
-    functionsPairsToNodesTable, finds the bugs and reports the ones with at least the desires confidence.
-    In the above example (level zero), with confidence and support thresholds of 10% and 1 respectively,
-    the first iteration would be like this:
- 
-    (A,B) --> Scope1         support{(A,B)} = 1  => proceed to find bugs
-    left function in (A,B) pair: A       from the functionsToNodesTable:       <A: Scope1>
-                                         from the functionsPairsToNodesTable:  <(A,B): Scope1>
-                        ===> NO BUG!
-    right function in (A,B) pair: B      from the functionsToNodesTable:       <B: Scope1, Scope2>
-                                         from the functionsPairsToNodesTable:  <(A,B): Scope1>
-                        ===> B in Scope 2 is bug with respect to (A,B) pair. Confidence is 50%.
- 
- 
+ 2: Find More Bugs:
+ To use this algorithm, the 4th argument has to be 2.
  */
 
 
 
-public class BugDetection {
+public class BugDetectionD {
 	
     private String callgraph;
     private int support;
@@ -353,7 +309,7 @@ public class BugDetection {
     
     //Main function
     public static void main(String[] args) {    
-        BugDetection tool = new BugDetection();
+        BugDetectionD tool = new BugDetectionD();
         tool.parseArgs(args);
         tool.parseCallGraph();
         tool.createDataStructure();
