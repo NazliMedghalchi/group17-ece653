@@ -184,7 +184,7 @@ public class BugDetection {
                 }
             } // end of while (finished reading callgraph)
         } catch (Exception ex) {
-            System.err.println("Error: Encountered exception while running opt command: " + ex.getMessage());
+            System.err.println("Error: Error encountered in parsing call graph: " + ex.getMessage());
             ex.printStackTrace();
             System.exit(-1);
         }

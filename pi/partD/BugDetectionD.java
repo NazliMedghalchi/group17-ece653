@@ -29,11 +29,12 @@ import java.util.logging.Logger;
  
  1. Reduce False Positives:
  To reduce false positives, the approach used here is to use a sliding confidence threshold. The T_CONFIDENCE
- should increase based on the support of the function inverse exponentially. 
- To use this algorithm, the 4th argument has to be 1.
+ should increase based on the support of the function linearly. 
+ To use this algorithm, the 5th argument has to be 1.
  
  2: Find More Bugs:
- To use this algorithm, the 4th argument has to be 2.
+To find more bugs, the order of functions being called is taken into account when determining pairs for bugs.
+ To use this algorithm, the 5th argument has to be 2.
  */
 
 
@@ -43,8 +44,9 @@ public class BugDetectionD {
     private String callgraph;
     private int support;
     private int confidence;
- // Determines the level of expansion for inter-procedural analysis. level = 0 implies intra-procedural analysis.  
-    private int level; 
+    private int level; // level of expansion for inter-procedural analysis. level = 0 implies intra-procedural analysis. 
+    private int algorithm; // 1 for reducing false positives, 2 for finding more bugs
+    
  // A hash table with function names as keys and a hash set of nodes where the function have been  called as values.
     private Hashtable<String, HashSet<String>> functionsToNodesTable = new Hashtable<String, HashSet<String>>();
  // A hash table with pairs of function names as keys and a hash set of nodes where the function pair have been  called as values.    
@@ -52,44 +54,19 @@ public class BugDetectionD {
  // A hash table with node names as keys and a hash set of functions that are called in the node as values. 
     private Hashtable<String, HashSet<String>> nodesToFunctionsTable = new Hashtable<String, HashSet<String>>();
 
-//  Parse the arguments of the main function and checks for the correct number of arguments
-//  Considering that at least one argument (name of the callgraph file) is required, in case
-//  only one argument is provided, we can assume that all default values are used (support = 3,
-//  confidence = 65, and level of expansion = 0).
-//  the support and confidence arguments should not be provided or always provided together; otherwise, there is
-//  no way of telling the number is intended for which. Thus, in case we hace two arguments in total, we can assume
-//  that the first one is the callgraph, and the second one is the expansion level.
-//  With the sam ereasoning, in case we have three arguments, we assume the first one is the callgraph, second one
-//  the support threshold, and the third one confidence threshold.
-//  And finally, if we have four argments, all the variables are initialized as requested.
-//  IMPORTANT NOTE: we assume correct format of input e.g. user will not give us a negative number.
+//  IMPORTANT NOTE: We assume all 5 arguments passed for this partD of the project, 
+//  as it is hard to figure out otherwise which algorithm is to be used.
+//  
     private void parseArgs(String[] args) {
-        callgraph = args[0];
-        
-        switch (args.length) {
-            case 1: support = 3;
-                    confidence = 65;
-                    level = 0;
-                    break;
-
-            case 2: support = 3;
-                    confidence = 65;
-                    level = Integer.parseInt(args[1]);
-                    break;
-
-            case 3: support = Integer.parseInt(args[1]);
-                    confidence = Integer.parseInt(args[2]);
-                    level = 0;
-                    break;
-
-            case 4: support = Integer.parseInt(args[1]);
-                    confidence = Integer.parseInt(args[2]);
-                    level = Integer.parseInt(args[3]);
-                    break;
-
-            default:    System.err.println("Error: Wrong number of arguments provided. Program exiting.");
-                        System.exit(-1);
+        if (args.length != 5){
+            System.err.println("Error: Wrong number of arguments provided. Need 5 arguments for part D. Program exiting.");
+            System.exit(-1);
         }
+        callgraph = args[0];
+        support = Integer.parseInt(args[1]);
+        confidence = Integer.parseInt(args[2]);
+        level = Integer.parseInt(args[3]);
+        algorithm = Integer.parseInt(args[4]);                       
     }
        
     
@@ -140,7 +117,7 @@ public class BugDetectionD {
                 }
             } // end of while (finished reading callgraph)
         } catch (Exception ex) {
-            System.err.println("Error: Encountered exception while running opt command: " + ex.getMessage());
+            System.err.println("Error: Error encountered in parsing call graph: " + ex.getMessage());
             ex.printStackTrace();
             System.exit(-1);
         }
@@ -157,7 +134,10 @@ public class BugDetectionD {
     	while (keySetIterator.hasNext()) {
     		String nodeName = keySetIterator.next();
     		HashSet<String> functionsInNode = new HashSet<String>();
-    		getFunctionCalls(nodeName, level, functionsInNode);
+    		if (!nodesToFunctionsTable.get(nodeName).isEmpty()) { 
+			Set<String> path = new HashSet<String>();
+			getFunctionCalls(nodeName, level, functionsInNode, path);
+		}
     		insertFunctionsPairsToNodes(functionsInNode, nodeName);
     		insertFunctionsToNodes(functionsInNode, nodeName);
     	}
@@ -168,14 +148,20 @@ public class BugDetectionD {
   // It takes the scope name as an argument, retrieves the values for that scope, which is
   // a set of function names, then iterates over those functions and retrives the functions called in each of them
   // from the nodesToFunctionsTable, and adds them to the functionsInNode hash set.
-    private void getFunctionCalls(String nodeName, int level, HashSet<String> functionsInNode) {
-    	if (level < 0) return;
-    	Iterator<String> iter = nodesToFunctionsTable.get(nodeName).iterator();
+    private void getFunctionCalls(String nodeName, int level, HashSet<String> functionsInNode, Set<String> path) {
+    	if (path.contains(nodeName)) return; // Avoid loops.
+	Iterator<String> iter = nodesToFunctionsTable.get(nodeName).iterator();
+    	if (!iter.hasNext() || level < 0)  {
+		// Only add leaf nodes. 
+    		functionsInNode.add(nodeName);
+		return;
+	}
+	path.add(nodeName);
     	while (iter.hasNext()) {
     		String function = iter.next();
-    		functionsInNode.add(function);
-    		getFunctionCalls(function, level-1, functionsInNode);
+    		getFunctionCalls(function, level-1, functionsInNode, path);
     	}
+	path.remove(nodeName);
     }
     
 //  Inserts into hash table 'functionsPairsToNodesTable' where function pairs within a node are the keys,
@@ -275,7 +261,7 @@ public class BugDetectionD {
     	// the pair are always called together --> no bug!
     	if (functionSupport > pairSupport) {
     		float bugConfidence = pairSupport / ((float)functionSupport) * 100;
-    		if (bugConfidence >= confidence) {
+    		if ((bugConfidence >= confidence && algorithm == 2)||(bugConfidence >=findConfidenceThreshold(pairSupport) && algorithm ==1)) {
     			// if confidence is greater than or equal to the threshold
     			// --> there is a bug! Print it!
     			Iterator<String> iter = functionScopes.iterator();
@@ -305,6 +291,12 @@ public class BugDetectionD {
     	    	}
     		}
     	}
+    }
+    
+    //Calculate confidence threshold 
+    private int findConfidenceThreshold(int functionPairSupport){
+        int confidenceThreshold = ((functionPairSupport - support)*(99-confidence)/(100 - support))+confidence;
+        return confidenceThreshold;
     }
     
     //Main function
