@@ -269,7 +269,7 @@ public class BugDetection {
     
     
  // Class Pair defined, used for function pairs
-    private class Pair {
+    private static class Pair {
         private final String left;
         private final String right;
 
