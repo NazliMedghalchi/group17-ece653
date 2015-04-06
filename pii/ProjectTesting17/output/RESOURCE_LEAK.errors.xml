@@ -1,0 +1,57 @@
+<error>
+<domain>STATIC_JAVA</domain>
+<checker>RESOURCE_LEAK</checker>
+<file>/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java</file>
+<function>BugDetection.parseCallGraph()</function>
+<score>100</score>
+<ordered>true</ordered>
+<event>
+<tag>new_resource</tag>
+<description>{CovLStrv2{{t{{0} creates a new resource.}{{code{new java.io.FileReader(callgraph)}}}}}}</description>
+<line>152</line>
+</event>
+<event>
+<tag>var_assign</tag>
+<description>{CovLStrv2{{t{Assigning: {0} = resource returned from {1}.}{{code{processOutput}}}{{code{new java.io.BufferedReader(new java.io.FileReader(callgraph))}}}}}}</description>
+<line>152</line>
+</event>
+<event>
+<tag>noescape</tag>
+<description>{CovLStrv2{{t{Resource {0} is not closed or saved in {1}.}{{code{processOutput}}}{{code{readLine}}}}}}</description>
+<line>153</line>
+</event>
+<event>
+<tag>cond_false</tag>
+<description>{CovLStrv2{{t{Condition {0}, taking false branch}{{code{(callGraphLine = processOutput.readLine()) != null}}}}}}</description>
+<line>153</line>
+<path_event>
+<jump>true</jump>
+</path_event>
+</event>
+<event>
+<tag>loop_end</tag>
+<description>{CovLStrv2{{t{Reached end of loop}}}}</description>
+<line>185</line>
+<path_event>
+<suppressible>true</suppressible>
+</path_event>
+</event>
+<event>
+<main>true</main>
+<tag>leaked_resource</tag>
+<description>{CovLStrv2{{t{Variable {0} going out of scope leaks the resource it refers to.}{{code{processOutput}}}}}}</description>
+<line>186</line>
+</event>
+<extra>FileReader</extra>
+<subcategory>none</subcategory>
+<typePropertiesGroup>
+<category>Resource leaks</category>
+<impact>High</impact>
+<type>Resource leak</type>
+<cwe>404</cwe>
+<localEffect>The system resource will not be reclaimed and reused, reducing the future availability of the resource.</localEffect>
+<longDescription>Leak of a system resource</longDescription>
+<qualityKind>true</qualityKind>
+<securityKind>true</securityKind>
+</typePropertiesGroup>
+</error>

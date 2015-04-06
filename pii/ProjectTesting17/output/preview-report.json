@@ -1,0 +1,188 @@
+{
+  "header" : {
+    "format" : "commit preview report",
+    "version" : 2
+  },
+  "analysisInfo" : {
+    "reportTimestamp" : "2015-04-06T15:13:55.835Z",
+    "comparisonSnapshotId" : null,
+    "ownerAssignmentRule" : "default_component_owner",
+    "command" : "/usr/local/cov-analysis-7.6.0/bin/cov-analyze --dir /home/nmedghal/coverity-idirs/ProjectTesting17 --include-java -j auto --disable-webapp-security --strip-path /home/nmedghal/work/ece653 --all --preview --concurrency --security --symbian --enable-parse-warnings --rule --enable-fnptr --enable-fb",
+    "user" : "admin"
+  },
+  "issueInfo" : [ {
+    "cid" : 10272,
+    "mergeKey" : "6a2ffb66445a03b61d1da5de1ce0efad",
+    "presentInComparisonSnapshot" : false,
+    "firstDetectedDateTime" : "2015-04-06T15:13:55.835Z",
+    "occurrences" : [ {
+      "checker" : "RESOURCE_LEAK",
+      "file" : "/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java",
+      "function" : "BugDetection.parseCallGraph()",
+      "extra" : "FileReader",
+      "mergeWithLowercaseFile" : false,
+      "subcategory" : "none",
+      "mainEventLineNumber" : 186,
+      "mainEventDescription" : "Variable \"processOutput\" going out of scope leaks the resource it refers to.",
+      "componentName" : "Other",
+      "componentDefaultOwner" : null,
+      "componentDefaultOwnerLdapServer" : null
+    } ],
+    "triage" : {
+      "externalReference" : null,
+      "classification" : "Unclassified",
+      "owner" : null,
+      "action" : "Undecided",
+      "severity" : "Unspecified",
+      "fixTarget" : "Untargeted",
+      "legacy" : "False"
+    },
+    "customTriage" : { },
+    "ownerLdapServerName" : null
+  }, {
+    "cid" : 10273,
+    "mergeKey" : "64dccd97664f42ef53445391974b6905",
+    "presentInComparisonSnapshot" : false,
+    "firstDetectedDateTime" : "2015-04-06T15:13:55.835Z",
+    "occurrences" : [ {
+      "checker" : "FB.DM_DEFAULT_ENCODING",
+      "file" : "/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java",
+      "function" : "BugDetection.parseCallGraph()",
+      "extra" : "",
+      "mergeWithLowercaseFile" : false,
+      "subcategory" : "none",
+      "mainEventLineNumber" : 152,
+      "mainEventDescription" : "Found reliance on default encoding: new java.io.FileReader(String).",
+      "componentName" : "Other",
+      "componentDefaultOwner" : null,
+      "componentDefaultOwnerLdapServer" : null
+    } ],
+    "triage" : {
+      "externalReference" : null,
+      "classification" : "Unclassified",
+      "owner" : null,
+      "action" : "Undecided",
+      "severity" : "Unspecified",
+      "fixTarget" : "Untargeted",
+      "legacy" : "False"
+    },
+    "customTriage" : { },
+    "ownerLdapServerName" : null
+  }, {
+    "cid" : 10274,
+    "mergeKey" : "81bf116d7d165129abe3a39c21bacf28",
+    "presentInComparisonSnapshot" : false,
+    "firstDetectedDateTime" : "2015-04-06T15:13:55.835Z",
+    "occurrences" : [ {
+      "checker" : "FB.DM_EXIT",
+      "file" : "/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java",
+      "function" : "BugDetection.parseArgs(java.lang.String[])",
+      "extra" : "",
+      "mergeWithLowercaseFile" : false,
+      "subcategory" : "none",
+      "mainEventLineNumber" : 135,
+      "mainEventDescription" : "BugDetection.parseArgs(String[]) invokes System.exit(...), which shuts down the entire virtual machine.",
+      "componentName" : "Other",
+      "componentDefaultOwner" : null,
+      "componentDefaultOwnerLdapServer" : null
+    } ],
+    "triage" : {
+      "externalReference" : null,
+      "classification" : "Unclassified",
+      "owner" : null,
+      "action" : "Undecided",
+      "severity" : "Unspecified",
+      "fixTarget" : "Untargeted",
+      "legacy" : "False"
+    },
+    "customTriage" : { },
+    "ownerLdapServerName" : null
+  }, {
+    "cid" : 10275,
+    "mergeKey" : "e3d15d1b03ad24e25a93e93e1e12bc2a",
+    "presentInComparisonSnapshot" : false,
+    "firstDetectedDateTime" : "2015-04-06T15:13:55.835Z",
+    "occurrences" : [ {
+      "checker" : "FB.DM_EXIT",
+      "file" : "/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java",
+      "function" : "BugDetection.parseCallGraph()",
+      "extra" : "",
+      "mergeWithLowercaseFile" : false,
+      "subcategory" : "none",
+      "mainEventLineNumber" : 189,
+      "mainEventDescription" : "BugDetection.parseCallGraph() invokes System.exit(...), which shuts down the entire virtual machine.",
+      "componentName" : "Other",
+      "componentDefaultOwner" : null,
+      "componentDefaultOwnerLdapServer" : null
+    } ],
+    "triage" : {
+      "externalReference" : null,
+      "classification" : "Unclassified",
+      "owner" : null,
+      "action" : "Undecided",
+      "severity" : "Unspecified",
+      "fixTarget" : "Untargeted",
+      "legacy" : "False"
+    },
+    "customTriage" : { },
+    "ownerLdapServerName" : null
+  }, {
+    "cid" : 10276,
+    "mergeKey" : "8e15a87f500ff0686a064ed075ef1bf0",
+    "presentInComparisonSnapshot" : false,
+    "firstDetectedDateTime" : "2015-04-06T15:13:55.835Z",
+    "occurrences" : [ {
+      "checker" : "FB.SIC_INNER_SHOULD_BE_STATIC",
+      "file" : "/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java",
+      "function" : "unknown",
+      "extra" : "",
+      "mergeWithLowercaseFile" : false,
+      "subcategory" : "none",
+      "mainEventLineNumber" : 271,
+      "mainEventDescription" : "Should BugDetection$Pair be a _static_ inner class?",
+      "componentName" : "Other",
+      "componentDefaultOwner" : null,
+      "componentDefaultOwnerLdapServer" : null
+    } ],
+    "triage" : {
+      "externalReference" : null,
+      "classification" : "Unclassified",
+      "owner" : null,
+      "action" : "Undecided",
+      "severity" : "Unspecified",
+      "fixTarget" : "Untargeted",
+      "legacy" : "False"
+    },
+    "customTriage" : { },
+    "ownerLdapServerName" : null
+  }, {
+    "cid" : 10277,
+    "mergeKey" : "0c7fda478534983bd3bb89e1ae3d0a66",
+    "presentInComparisonSnapshot" : false,
+    "firstDetectedDateTime" : "2015-04-06T15:13:55.835Z",
+    "occurrences" : [ {
+      "checker" : "FB.VA_FORMAT_STRING_USES_NEWLINE",
+      "file" : "/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java",
+      "function" : "BugDetection.findBugs(java.lang.String, BugDetection$Pair, int)",
+      "extra" : "",
+      "mergeWithLowercaseFile" : false,
+      "subcategory" : "none",
+      "mainEventLineNumber" : 353,
+      "mainEventDescription" : "Format string should use %n rather than \\n.",
+      "componentName" : "Other",
+      "componentDefaultOwner" : null,
+      "componentDefaultOwnerLdapServer" : null
+    } ],
+    "triage" : {
+      "externalReference" : null,
+      "classification" : "Unclassified",
+      "owner" : null,
+      "action" : "Undecided",
+      "severity" : "Unspecified",
+      "fixTarget" : "Untargeted",
+      "legacy" : "False"
+    },
+    "customTriage" : { },
+    "ownerLdapServerName" : null
+  } ]
+}

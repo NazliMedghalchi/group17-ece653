@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE coverity SYSTEM "config.dtd">
+<coverity>
+
+<metrics>
+    <metric>
+        <name>time</name>
+        <value>2</value>
+    </metric>
+    <metric>
+        <name>args</name>
+        <value>/usr/local/cov-analysis-7.6.0/bin/cov-build --dir /home/nmedghal/coverity-idirs/ProjectTesting17 --delete-stale-tus</value>
+    </metric>
+    <metric>
+        <name>host</name>
+        <value>eceLinux3.uwaterloo.ca</value>
+    </metric>
+    <metric>
+        <name>short-platform</name>
+        <value>linux64</value>
+    </metric>
+    <metric>
+        <name>platform</name>
+        <value>Linux 2.6.18-402.el5 x86_64</value>
+    </metric>
+    <metric>
+        <name>ident</name>
+        <value>7.6.0 (build 9b77a50df0 p-harmony-push-21098.563)</value>
+    </metric>
+    <metric>
+        <name>user</name>
+        <value>nmedghal</value>
+    </metric>
+    <metric>
+        <name>cwd</name>
+        <value>/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton</value>
+    </metric>
+    <metric>
+        <name>config</name>
+        <value>/usr/local/cov-analysis-7.6.0/config/coverity_config.xml</value>
+    </metric>
+    <metric>
+        <name>intermediatedir</name>
+        <value>/home/nmedghal/coverity-idirs/ProjectTesting17</value>
+    </metric>
+    <metric>
+        <name>outputdir</name>
+        <value>/home/nmedghal/coverity-idirs/ProjectTesting17/output</value>
+    </metric>
+    <metric>
+        <name>emitdir</name>
+        <value>/home/nmedghal/coverity-idirs/ProjectTesting17/emit</value>
+    </metric>
+    <metric>
+        <name>force</name>
+        <value>no</value>
+    </metric>
+    <metric>
+        <name>cygwin</name>
+        <value>no</value>
+    </metric>
+    <metric>
+        <name>failures</name>
+        <value>0</value>
+    </metric>
+    <metric>
+        <name>successes</name>
+        <value>0</value>
+    </metric>
+    <metric>
+        <name>uptodate</name>
+        <value>1</value>
+    </metric>
+    <metric>
+        <name>buildcmd</name>
+        <value>make</value>
+    </metric>
+</metrics>
+</coverity>

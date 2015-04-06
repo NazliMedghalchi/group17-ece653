@@ -1,0 +1,149 @@
+<error>
+<domain>STATIC_JAVA</domain>
+<checker>FB.DM_DEFAULT_ENCODING</checker>
+<file>/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java</file>
+<function>BugDetection.parseCallGraph()</function>
+<ordered>true</ordered>
+<event>
+<main>true</main>
+<tag>defect</tag>
+<description>{CovLStr{v1}{Found reliance on default encoding: {0}.}{new java.io.FileReader(String)}}</description>
+<line>152</line>
+</event>
+<extra></extra>
+<subcategory>none</subcategory>
+<properties>
+<property>
+<key>fb.priority</key>
+<value>High</value>
+</property>
+</properties>
+<typePropertiesGroup>
+<category>FindBugs: Internationalization</category>
+<impact>Low</impact>
+<type>Dm: Dubious method used</type>
+<localEffect></localEffect>
+<longDescription>Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. (&lt;a href=&quot;/docs/en/findbugs/fb_checker_ref.html#FB.DM_DEFAULT_ENCODING&quot; target=&quot;_blank&quot;&gt;From FindBugs&amp;#x2122; description&lt;/a&gt;)</longDescription>
+<qualityKind>true</qualityKind>
+</typePropertiesGroup>
+</error>
+<error>
+<domain>STATIC_JAVA</domain>
+<checker>FB.DM_EXIT</checker>
+<file>/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java</file>
+<function>BugDetection.parseArgs(java.lang.String[])</function>
+<ordered>true</ordered>
+<event>
+<main>true</main>
+<tag>defect</tag>
+<description>{CovLStr{v1}{{0} invokes System.exit(...), which shuts down the entire virtual machine.}{BugDetection.parseArgs(String[])}}</description>
+<line>135</line>
+</event>
+<extra></extra>
+<subcategory>none</subcategory>
+<properties>
+<property>
+<key>fb.priority</key>
+<value>Medium</value>
+</property>
+</properties>
+<typePropertiesGroup>
+<category>FindBugs: Bad practice</category>
+<impact>Low</impact>
+<type>Dm: Dubious method used</type>
+<cwe>382</cwe>
+<localEffect></localEffect>
+<longDescription>Invoking System.exit shuts down the entire Java virtual machine. (&lt;a href=&quot;/docs/en/findbugs/fb_checker_ref.html#FB.DM_EXIT&quot; target=&quot;_blank&quot;&gt;From FindBugs&amp;#x2122; description&lt;/a&gt;)</longDescription>
+<qualityKind>true</qualityKind>
+<securityKind>true</securityKind>
+</typePropertiesGroup>
+</error>
+<error>
+<domain>STATIC_JAVA</domain>
+<checker>FB.DM_EXIT</checker>
+<file>/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java</file>
+<function>BugDetection.parseCallGraph()</function>
+<ordered>true</ordered>
+<event>
+<main>true</main>
+<tag>defect</tag>
+<description>{CovLStr{v1}{{0} invokes System.exit(...), which shuts down the entire virtual machine.}{BugDetection.parseCallGraph()}}</description>
+<line>189</line>
+</event>
+<extra></extra>
+<subcategory>none</subcategory>
+<properties>
+<property>
+<key>fb.priority</key>
+<value>Medium</value>
+</property>
+</properties>
+<typePropertiesGroup>
+<category>FindBugs: Bad practice</category>
+<impact>Low</impact>
+<type>Dm: Dubious method used</type>
+<cwe>382</cwe>
+<localEffect></localEffect>
+<longDescription>Invoking System.exit shuts down the entire Java virtual machine. (&lt;a href=&quot;/docs/en/findbugs/fb_checker_ref.html#FB.DM_EXIT&quot; target=&quot;_blank&quot;&gt;From FindBugs&amp;#x2122; description&lt;/a&gt;)</longDescription>
+<qualityKind>true</qualityKind>
+<securityKind>true</securityKind>
+</typePropertiesGroup>
+</error>
+<error>
+<domain>STATIC_JAVA</domain>
+<checker>FB.SIC_INNER_SHOULD_BE_STATIC</checker>
+<file>/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java</file>
+<function>unknown</function>
+<ordered>true</ordered>
+<event>
+<main>true</main>
+<tag>defect</tag>
+<description>{CovLStr{v1}{Should {0} be a _static_ inner class?}{BugDetection$Pair}}</description>
+<line>271</line>
+</event>
+<extra></extra>
+<subcategory>none</subcategory>
+<properties>
+<property>
+<key>fb.priority</key>
+<value>Medium</value>
+</property>
+</properties>
+<typePropertiesGroup>
+<category>FindBugs: Performance</category>
+<impact>Low</impact>
+<type>SIC: Inner class could be made static</type>
+<localEffect></localEffect>
+<longDescription>This class is an inner class, but does not use its embedded reference to the object which created it. (&lt;a href=&quot;/docs/en/findbugs/fb_checker_ref.html#FB.SIC_INNER_SHOULD_BE_STATIC&quot; target=&quot;_blank&quot;&gt;From FindBugs&amp;#x2122; description&lt;/a&gt;)</longDescription>
+<qualityKind>true</qualityKind>
+</typePropertiesGroup>
+</error>
+<error>
+<domain>STATIC_JAVA</domain>
+<checker>FB.VA_FORMAT_STRING_USES_NEWLINE</checker>
+<file>/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java</file>
+<function>BugDetection.findBugs(java.lang.String, BugDetection$Pair, int)</function>
+<ordered>true</ordered>
+<event>
+<main>true</main>
+<tag>defect</tag>
+<description>{CovLStr{v1}{Format string should use %n rather than \n.}}</description>
+<line>353</line>
+</event>
+<extra></extra>
+<subcategory>none</subcategory>
+<properties>
+<property>
+<key>fb.priority</key>
+<value>Medium</value>
+</property>
+</properties>
+<typePropertiesGroup>
+<category>FindBugs: Bad practice</category>
+<impact>Low</impact>
+<type>FS: Format string problem</type>
+<localEffect></localEffect>
+<longDescription>This format string include a newline character (\n). (&lt;a href=&quot;/docs/en/findbugs/fb_checker_ref.html#FB.VA_FORMAT_STRING_USES_NEWLINE&quot; target=&quot;_blank&quot;&gt;From FindBugs&amp;#x2122; description&lt;/a&gt;)</longDescription>
+<qualityKind>true</qualityKind>
+</typePropertiesGroup>
+</error>

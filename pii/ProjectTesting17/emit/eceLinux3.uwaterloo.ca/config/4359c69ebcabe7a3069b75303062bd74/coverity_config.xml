@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE coverity SYSTEM "coverity_config.dtd">
+<coverity>
+<!-- Version 7.6.0 -->
+<config>
+<include>$CONFIGDIR$/javac-config-0/coverity_config.xml</include>
+<include>$CONFIGDIR$/java-config-0/coverity_config.xml</include>
+<include>$CONFIGDIR$/apt-config-0/coverity_config.xml</include>
+</config>
+</coverity>

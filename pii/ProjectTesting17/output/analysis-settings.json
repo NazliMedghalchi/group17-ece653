@@ -1,0 +1,19 @@
+{
+  covAnalyzeArgs : [
+    "--fb-include",
+    "coverity-default",
+    "--all",
+    "--concurrency",
+    "--disable-webapp-security",
+    "--enable-fb",
+    "--enable-fnptr",
+    "--enable-parse-warnings",
+    "--preview",
+    "--rule",
+    "--security",
+    "--symbian"
+  ],
+  fileCheckerOptions : [],
+  fbExcludeConfigurations : [],
+  fbIncludeConfiguration : null
+}

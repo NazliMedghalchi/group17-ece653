@@ -1,0 +1,345 @@
+2015-04-06T04:02:20.243288Z|cov-build|7782|info|> cov-build 7.6.0 (build 9b77a50df0 p-harmony-push-21098.563)
+2015-04-06T04:02:20.243392Z|cov-build|7782|info|> Coverity Build Capture (64-bit) version 7.6.0 on Linux 2.6.18-402.el5 x86_64
+2015-04-06T04:02:20.243392Z|cov-build|7782|info|> Internal version numbers: 9b77a50df0 p-harmony-push-21098.563
+2015-04-06T04:02:20.243392Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.243418Z|cov-build|7782|info|> Dumping from hostname : eceLinux3.uwaterloo.ca
+2015-04-06T04:02:20.243418Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.243437Z|cov-build|7782|info|> Platform info:
+2015-04-06T04:02:20.243437Z|cov-build|7782|info|> Sysname = Linux
+2015-04-06T04:02:20.243437Z|cov-build|7782|info|> Release = 2.6.18-402.el5
+2015-04-06T04:02:20.243437Z|cov-build|7782|info|> Machine = x86_64
+2015-04-06T04:02:20.243437Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.243437Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.243479Z|cov-build|7782|info|> cov-build command: /usr/local/cov-analysis-7.6.0/bin/cov-build --dir /home/nmedghal/coverity-idirs/ProjectTesting17 --delete-stale-tus make 
+2015-04-06T04:02:20.243999Z|cov-build|7782|info|> build command: /usr/bin/make
+2015-04-06T04:02:20.244025Z|cov-build|7782|info|> thunk command: /usr/local/cov-analysis-7.6.0/bin/cov-internal-thunk.sh make
+2015-04-06T04:02:20.244025Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.244066Z|cov-build|7782|info|> Set COVERITY_BIN to /usr/local/cov-analysis-7.6.0/bin
+2015-04-06T04:02:20.244088Z|cov-build|7782|info|> Set COVERITY_SITE_CC to apt;g++;gcc;java;javac;javaw
+2015-04-06T04:02:20.244108Z|cov-build|7782|info|> Set COVERITY_TEMP to /tmp/cov-nmedghal/96d207688f4365ffe5d710abc4c8c8f6
+2015-04-06T04:02:20.244133Z|cov-build|7782|info|> Set COVERITY_IDIR to /home/nmedghal/coverity-idirs/ProjectTesting17
+2015-04-06T04:02:20.244174Z|cov-build|7782|info|> Set COVERITY_OUTPUT to /home/nmedghal/coverity-idirs/ProjectTesting17/build-log.txt
+2015-04-06T04:02:20.244190Z|cov-build|7782|info|> Set COVERITY_LOG to /home/nmedghal/coverity-idirs/ProjectTesting17/build-log.txt
+2015-04-06T04:02:20.244233Z|cov-build|7782|info|> Set COVERITY_OUTPUT_ENCODING to UTF-8
+2015-04-06T04:02:20.244269Z|cov-build|7782|info|> Set COVERITY_EMIT to /home/nmedghal/coverity-idirs/ProjectTesting17/emit
+2015-04-06T04:02:20.244320Z|cov-build|7782|info|> Append to LD_LIBRARY_PATH /usr/local/cov-analysis-7.6.0/jars
+2015-04-06T04:02:20.244340Z|cov-build|7782|info|> Setting COVERITY_LD_LIBRARY_PATH to /usr/local/cov-analysis-7.6.0/jars
+2015-04-06T04:02:20.244434Z|cov-build|7782|info|> Set COVERITY_JAVA_CONFIG to javac#TEMPLATE##java#TEMPLATE##apt#TEMPLATE##javaw#TEMPLATE###
+2015-04-06T04:02:20.244520Z|cov-build|7782|info|> Set COVERITY_IS_COMPILER to 0
+2015-04-06T04:02:20.244543Z|cov-build|7782|info|> Set COVERITY_TOP_PROCESS to 0
+2015-04-06T04:02:20.244563Z|cov-build|7782|info|> Set COVERITY_IS_COMPILER_DESCENDANT to 0
+2015-04-06T04:02:20.244629Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.244629Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.244629Z|cov-build|7782|info|> Dumping configuration:
+2015-04-06T04:02:20.244629Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.244659Z|cov-build|7782|info|> User/default configuration:
+2015-04-06T04:02:20.244659Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|> Configuration read from: command-line
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|>     Node: include Value: /usr/local/cov-analysis-7.6.0/config/coverity_config.xml
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|>     Node: prevent
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|>       Node: emit_options
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|>         Node: delete_stale_tus Value: true
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|>     Node: prevent
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|>       Node: dir Value: /home/nmedghal/coverity-idirs/ProjectTesting17
+2015-04-06T04:02:20.244677Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|> Configuration read from: /usr/local/cov-analysis-7.6.0/config/coverity_config.xml
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|>     Node: include Value: /usr/local/cov-analysis-7.6.0/config/template-javac-config-0/coverity_config.xml
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|>     Node: include Value: /usr/local/cov-analysis-7.6.0/config/template-java-config-0/coverity_config.xml
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|>     Node: include Value: /usr/local/cov-analysis-7.6.0/config/template-apt-config-0/coverity_config.xml
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|>     Node: include Value: /usr/local/cov-analysis-7.6.0/config/template-javaw-config-0/coverity_config.xml
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|>     Node: include Value: /usr/local/cov-analysis-7.6.0/config/template-gcc-config-0/coverity_config.xml
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|>     Node: include Value: /usr/local/cov-analysis-7.6.0/config/template-gcc-config-1/coverity_config.xml
+2015-04-06T04:02:20.244764Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|> Configuration read from: /usr/local/cov-analysis-7.6.0/config/template-javac-config-0/coverity_config.xml
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>     Node: build
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>       Node: compiler
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>         Node: template_compiler Value: true
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>         Node: comp_name Value: javac
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>         Node: comp_translator Value: javac
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>         Node: comp_lang Value: Static Java
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>         Node: comp_generic Value: java
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>         Node: id Value: javac-javac-.*
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|>   Node: md5 Value: 4dff82855a5f75486f23dc3987a065c8
+2015-04-06T04:02:20.244834Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|> Configuration read from: /usr/local/cov-analysis-7.6.0/config/template-java-config-0/coverity_config.xml
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>     Node: build
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>       Node: compiler
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>         Node: template_compiler Value: true
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>         Node: comp_name Value: java
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>         Node: comp_translator Value: java
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>         Node: comp_lang Value: Static Java
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>         Node: comp_generic Value: java
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>         Node: id Value: java-java-.*
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|>   Node: md5 Value: 670e0eff61ca6e268d4c53f998738922
+2015-04-06T04:02:20.244921Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|> Configuration read from: /usr/local/cov-analysis-7.6.0/config/template-apt-config-0/coverity_config.xml
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>     Node: build
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>       Node: compiler
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>         Node: template_compiler Value: true
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>         Node: comp_name Value: apt
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>         Node: comp_translator Value: apt
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>         Node: comp_lang Value: Static Java
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>         Node: comp_generic Value: java
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>         Node: id Value: apt-apt-.*
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|>   Node: md5 Value: 0c3c17692884987df5fe47566993553e
+2015-04-06T04:02:20.245007Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|> Configuration read from: /usr/local/cov-analysis-7.6.0/config/template-javaw-config-0/coverity_config.xml
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>     Node: build
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>       Node: compiler
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>         Node: template_compiler Value: true
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>         Node: comp_name Value: javaw
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>         Node: comp_translator Value: javaw
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>         Node: comp_lang Value: Static Java
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>         Node: comp_generic Value: java
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>         Node: id Value: javaw-javaw-.*
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|>   Node: md5 Value: aa3bf49b5164470df847ce74b96aa069
+2015-04-06T04:02:20.245097Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|> Configuration read from: /usr/local/cov-analysis-7.6.0/config/template-gcc-config-0/coverity_config.xml
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>     Node: build
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>       Node: compiler
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: template_compiler Value: true
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: comp_name Value: gcc
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: comp_translator Value: gcc
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: comp_lang Value: C/C++
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: id Value: gcc-gcc-.*
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: opt_preinclude_file Value: /usr/local/cov-analysis-7.6.0/config/template-gcc-config-0/../user_nodefs.h
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: id Value: g++-gcc-.*
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: opt_preinclude_file Value: /usr/local/cov-analysis-7.6.0/config/template-gcc-config-0/../user_nodefs.h
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|>   Node: md5 Value: f23c3a0bd26a6ae718a86b54cc7d0c25
+2015-04-06T04:02:20.245184Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|> Configuration read from: /usr/local/cov-analysis-7.6.0/config/template-gcc-config-1/coverity_config.xml
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>     Node: build
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>       Node: compiler
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: template_compiler Value: true
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: comp_name Value: g++
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: comp_translator Value: gcc
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: comp_lang Value: C/C++
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: id Value: gcc-g++-.*
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: opt_preinclude_file Value: /usr/local/cov-analysis-7.6.0/config/template-gcc-config-1/../user_nodefs.h
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: id Value: g++-g++-.*
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: opt_preinclude_file Value: /usr/local/cov-analysis-7.6.0/config/template-gcc-config-1/../user_nodefs.h
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|>   Node: md5 Value: ae419895d25cae0d0d29e0246080703c
+2015-04-06T04:02:20.245293Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.273810Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.273810Z|cov-build|7782|info|> Cached template configuration instances:
+2015-04-06T04:02:20.273810Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.273863Z|cov-build|7782|info|> Configuration read from: /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/coverity_config.xml
+2015-04-06T04:02:20.273863Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.273863Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.273863Z|cov-build|7782|info|>     Node: include Value: /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/javac-config-0/coverity_config.xml
+2015-04-06T04:02:20.273863Z|cov-build|7782|info|>     Node: include Value: /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/java-config-0/coverity_config.xml
+2015-04-06T04:02:20.273863Z|cov-build|7782|info|>     Node: include Value: /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/apt-config-0/coverity_config.xml
+2015-04-06T04:02:20.273863Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|> Configuration read from: /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/javac-config-0/coverity_config.xml
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>     Node: build
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>       Node: compiler
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: comp_name Value: javac
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: comp_dir Value: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/bin
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: comp_translator Value: javac
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: comp_lang Value: Java
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: comp_front_end Value: cov-emit-java
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: comp_desc Value: Oracle Java compiler (javac)
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: comp_generic Value: java
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: id Value: javac-javac-Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)-4359c69ebcabe7a3069b75303062bd74-0
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: version Value: Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: id Value: javac-javac-Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)-4359c69ebcabe7a3069b75303062bd74-0
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: template_config_option_id Value: javac-javac-.*
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: expand
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>           Node: options
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: replace_arg_regex
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>               Node: replace Value: @[a-zA-Z0-9]+@(.*)
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>               Node: with Value: --coverity_resp_file=$1
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: replace_arg_regex
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>               Node: replace Value: @+(.*)
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>               Node: with Value: --coverity_resp_file=$1
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: intern_split_response_file_fn Value: line_split
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: pre_trans
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>           Node: options
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: intern_trans Value: java_pre_translate
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: inject_capture
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>           Node: options
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: intern_trans Value: javac_capture_inject
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.emit=$COVERITY_EMIT$
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.build_log=$COVERITY_OUTPUT$
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.build_log_encoding=$COVERITY_OUTPUT_ENCODING$
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.force.debug=true
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.executable_name=$NATIVE_COMPILER$
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|>   Node: md5 Value: 97aab2cc454e7f78ffbd2ce4533aceab
+2015-04-06T04:02:20.273923Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|> Configuration read from: /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/java-config-0/coverity_config.xml
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>     Node: build
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>       Node: compiler
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: comp_name Value: java
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: comp_dir Value: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/bin
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: comp_translator Value: java
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: comp_lang Value: Java
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: comp_front_end Value: cov-emit-java
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: comp_desc Value: Oracle Java compiler (java)
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: comp_generic Value: java
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: id Value: java-java-Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)-4359c69ebcabe7a3069b75303062bd74-0
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: version Value: Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: id Value: java-java-Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)-4359c69ebcabe7a3069b75303062bd74-0
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: template_config_option_id Value: java-java-.*
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: expand
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>           Node: options
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: replace_arg_regex
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>               Node: replace Value: @[a-zA-Z0-9]+@(.*)
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>               Node: with Value: --coverity_resp_file=$1
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: replace_arg_regex
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>               Node: replace Value: @+(.*)
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>               Node: with Value: --coverity_resp_file=$1
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: intern_split_response_file_fn Value: line_split
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: pre_trans
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>           Node: options
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: intern_trans Value: java_pre_translate
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: inject_capture
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>           Node: options
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: intern_trans Value: java_capture_inject
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: prepend_arg Value: -Dcoverity.emit=$COVERITY_EMIT$
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: prepend_arg Value: -Dcoverity.build_log=$COVERITY_OUTPUT$
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: prepend_arg Value: -Dcoverity.build_log_encoding=$COVERITY_OUTPUT_ENCODING$
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: prepend_arg Value: -Dcoverity.force.debug=true
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>             Node: prepend_arg Value: -Dcoverity.executable_name=$NATIVE_COMPILER$
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|>   Node: md5 Value: db0c3b45d4d945121ec86c0b9b4f9510
+2015-04-06T04:02:20.274153Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|> Configuration read from: /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/apt-config-0/coverity_config.xml
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|> Node: coverity
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>   Node: config
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>     Node: build
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>       Node: compiler
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: comp_name Value: apt
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: comp_dir Value: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/bin
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: comp_translator Value: apt
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: comp_lang Value: Java
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: comp_front_end Value: cov-emit-java
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: comp_desc Value: Oracle Java compiler (apt)
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: comp_generic Value: java
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: id Value: apt-apt-Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)-4359c69ebcabe7a3069b75303062bd74-0
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: version Value: Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>       Node: options
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: id Value: apt-apt-Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)-4359c69ebcabe7a3069b75303062bd74-0
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: template_config_option_id Value: apt-apt-.*
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: expand
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>           Node: options
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: replace_arg_regex
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>               Node: replace Value: @[a-zA-Z0-9]+@(.*)
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>               Node: with Value: --coverity_resp_file=$1
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: replace_arg_regex
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>               Node: replace Value: @+(.*)
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>               Node: with Value: --coverity_resp_file=$1
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: intern_split_response_file_fn Value: line_split
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: pre_trans
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>           Node: options
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: intern_trans Value: java_pre_translate
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: inject_capture
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>           Node: options
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: intern_trans Value: javac_capture_inject
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.emit=$COVERITY_EMIT$
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.build_log=$COVERITY_OUTPUT$
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.build_log_encoding=$COVERITY_OUTPUT_ENCODING$
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.force.debug=true
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>             Node: prepend_arg Value: -J-Dcoverity.executable_name=$NATIVE_COMPILER$
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>         Node: begin_command_line_config
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|>   Node: md5 Value: 2e2d74a8437b40416b33d7e3e850c126
+2015-04-06T04:02:20.274372Z|cov-build|7782|info|> 
+2015-04-06T04:02:20.284074Z|cov-build|7782|info|> Using LD_PRELOAD = /usr/local/cov-analysis-7.6.0/bin/libcapture-linux64-${PLATFORM}.so
+[7788] EXECUTING: make
+[7792] CWD: /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton
+[7792] COMPILING: /usr/local/cov-analysis-7.6.0/bin/cov-translate --inject-capture-argfile /tmp/cov-nmedghal/96d207688f4365ffe5d710abc4c8c8f6/_usr_lib_jvm_java-1.6.0-openjdk-1.6.0.34.x86_64_bin_javac.cmdline javac -d ./bin BugDetection.java
+Using cached template compiler configuration instance /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/coverity_config.xml
+Failed to get java version by using: "java -version", version string is 'Picked up JAVA_TOOL_OPTIONS: -Xmx64m java version "1.6.0_34" OpenJDK Runtime Environment (IcedTea6 1.13.6) (rhel-1.13.6.1.el5_11-x86_64) OpenJDK 64-Bit Server VM (build 23.25-b01, mixed mode)' - assuming 1.6
+[7791] EXECUTING: javac -J-javaagent:/usr/local/cov-analysis-7.6.0/jars/capture-bci.jar -J-Dcoverity.props=/tmp/cov-nmedghal/96d207688f4365ffe5d710abc4c8c8f6/f06d101c3c91332dc9c6f3c64eeba30a.java-cap.properties -d ./bin BugDetection.java
+Intercepted JVM info: Vendor=Sun Microsystems Inc., version=1.6.0_34, runtime=1.6.0_34-b34, platform=Linux, architecture=amd64, classpath=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/lib/tools.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/classes:/usr/local/cov-analysis-7.6.0/jars/capture-bci.jar
+Java compiler call stack:
+ com.sun.tools.javac.Main.compile
+ com.sun.tools.javac.Main.main
+Saw java compiler invocation with args: -d ./bin BugDetection.java
+and envvars: CLASSPATH=(unset) JAVA_HOME=(unset)
+Running first half cov-emit-java with arguments: --fail-stop javac --source 1.6 --javac-version 1.6 --no-compiler-outputs --output-dir ./bin --encoding UTF-8 --unsupported-encoding-warning --timestamp-before-native-run 1428292940 --tolerate-missing-jars --invocid-file /home/nmedghal/coverity-idirs/ProjectTesting17/tmp/cej4477508979902159912-id.txt --classpath /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton --sourcepath /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton --bootclasspath /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/resources.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/rt.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/jsse.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/jce.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/charsets.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/rhino.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/gnome-java-bridge.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/sunjce_provider.jar /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java
+[STATUS] Compiling 1 Java source files including BugDetection.java.
+cov-emit-java being launched at: 2015-04-06 00:02:21.778
+[7812] EXECUTING: /usr/local/cov-analysis-7.6.0/bin/cov-translate --fail-stop javac --coverity_resp_file=/home/nmedghal/coverity-idirs/ProjectTesting17/tmp/cej2835230081508677683-args.txt
+Using cached template compiler configuration instance /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/coverity_config.xml
+COV_TRANSLATE EXPANDED ARGS: "--source" "1.6" "--javac-version" "1.6" "--no-compiler-outputs" "--output-dir" "./bin" "--encoding" "UTF-8" "--unsupported-encoding-warning" "--timestamp-before-native-run" "1428292940" "--tolerate-missing-jars" "--invocid-file" "/home/nmedghal/coverity-idirs/ProjectTesting17/tmp/cej4477508979902159912-id.txt" "--classpath" "/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton" "--sourcepath" "/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton" "--bootclasspath" "/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/resources.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/rt.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/jsse.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/jce.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/charsets.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/rhino.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/gnome-java-bridge.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/sunjce_provider.jar" "/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/BugDetection.java"
+[STATUS] Compiling BugDetection.java
+/usr/local/cov-analysis-7.6.0/bin/cov-emit-java --dir=/home/nmedghal/coverity-idirs/ProjectTesting17 --source 1.6 --javac-version 1.6 --no-compiler-outputs --output-dir ./bin --encoding UTF-8 --unsupported-encoding-warning --timestamp-before-native-run 1428292940 --tolerate-missing-jars --invocid-file /home/nmedghal/coverity-idirs/ProjectTesting17/tmp/cej4477508979902159912-id.txt --classpath /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton --sourcepath /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton --bootclasspath /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/resources.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/rt.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/jsse.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/jce.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/charsets.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/rhino.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/gnome-java-bridge.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/sunjce_provider.jar BugDetection.java 
+Command line with response file: /usr/local/cov-analysis-7.6.0/bin/cov-emit-java @utf8@/home/nmedghal/coverity-idirs/ProjectTesting17/tmp/cov-emit-java-91745ef7113b9f5ffe0e2507c0b0de47-0.cmd_args.txt
+Coverity Java Emit version 7.6.0 on Linux 2.6.18-402.el5 x86_64
+Internal version numbers: 9b77a50df0 p-harmony-push-21098.563
+
+Parsed bootclasspath: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/resources.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/rt.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/jsse.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/jce.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/charsets.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/rhino.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/gnome-java-bridge.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.34.x86_64/jre/lib/ext/sunjce_provider.jar
+Parsed classpath: /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton
+Parsed sourcepath: /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton
+Parsed source file list: BugDetection.java
+Already emitted all source files
+No more files to compile. Exiting per-class error recovery mode.
+Per-class error recovery: finished with code 0, took 1s to parse 1 files; successes=1, failures=0
+cov-emit-java terminated at: 2015-04-06 00:02:22.051
+Time spent in cov-emit-java: 273 ms
+The cov-emit-java output follows:
+First half cov-emit-java exited with code 0.
+Output scan: 4 existing classes, 4 new classes
+Running second half cov-emit-java with arguments: --fail-stop javac --invocid 2 --no-source --compiler-outputs /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection$State.class:/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection.class:/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection$Pair.class:/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection$1.class
+cov-emit-java being launched at: 2015-04-06 00:02:22.074
+[7817] EXECUTING: /usr/local/cov-analysis-7.6.0/bin/cov-translate --fail-stop javac --coverity_resp_file=/home/nmedghal/coverity-idirs/ProjectTesting17/tmp/cej4250412456012623875-args.txt
+Using cached template compiler configuration instance /home/nmedghal/coverity-idirs/ProjectTesting17/emit/eceLinux3.uwaterloo.ca/config/4359c69ebcabe7a3069b75303062bd74/coverity_config.xml
+COV_TRANSLATE EXPANDED ARGS: "--invocid" "2" "--no-source" "--compiler-outputs" "/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection$State.class:/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection.class:/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection$Pair.class:/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection$1.class"
+/usr/local/cov-analysis-7.6.0/bin/cov-emit-java --dir=/home/nmedghal/coverity-idirs/ProjectTesting17 --invocid 2 --no-source --compiler-outputs /home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection$State.class:/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection.class:/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection$Pair.class:/home/nmedghal/work/ece653/project/group17-ece653/group17-ece653/proj-skeleton/bin/BugDetection$1.class 
+Command line with response file: /usr/local/cov-analysis-7.6.0/bin/cov-emit-java @utf8@/home/nmedghal/coverity-idirs/ProjectTesting17/tmp/cov-emit-java-4d0d0e388018cd730a691a8623488623-0.cmd_args.txt
+Coverity Java Emit version 7.6.0 on Linux 2.6.18-402.el5 x86_64
+Internal version numbers: 9b77a50df0 p-harmony-push-21098.563
+
+cov-emit-java terminated at: 2015-04-06 00:02:22.293
+Time spent in cov-emit-java: 219 ms
+The cov-emit-java output follows:
+Second half cov-emit-java exited with code 0.
+2015-04-06T04:02:22.319694Z|cov-build|7782|info|> 
+2015-04-06T04:02:22.319694Z|cov-build|7782|info|> Build time (cov-build overall): 00:00:02.142854
+2015-04-06T04:02:22.319694Z|cov-build|7782|info|> 
+2015-04-06T04:02:22.320710Z|cov-build|7782|info|> Build time ( emits total): 00:00:00.519132
+2015-04-06T04:02:22.320710Z|cov-build|7782|info|> 
+2015-04-06T04:02:22.320710Z|cov-build|7782|info|> 
+2015-04-06T04:02:22.325468Z|cov-build|7782|info|> 1 Java compilation units (100%) have been captured and are ready for analysis
+2015-04-06T04:02:22.325468Z|cov-build|7782|info|> The cov-build utility completed successfully.

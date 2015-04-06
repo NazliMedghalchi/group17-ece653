@@ -1,0 +1,14 @@
+[LOG] run: /usr/local/cov-analysis-7.6.0/bin/cov-format-errors --dir /home/nmedghal/coverity-idirs/ProjectTesting17 --json-output-v3 /home/nmedghal/coverity-idirs/ProjectTesting17/output/cov-blame/errors.json
+[LOG] /usr/local/cov-analysis-7.6.0/bin/cov-format-errors exits successfully.
+[INFO] Computing likely owner for 10274 [81bf116d7d165129abe3a39c21bacf28]:
+[INFO] 	default_component_owner: none
+[INFO] Computing likely owner for 10273 [64dccd97664f42ef53445391974b6905]:
+[INFO] 	default_component_owner: none
+[INFO] Computing likely owner for 10272 [6a2ffb66445a03b61d1da5de1ce0efad]:
+[INFO] 	default_component_owner: none
+[INFO] Computing likely owner for 10275 [e3d15d1b03ad24e25a93e93e1e12bc2a]:
+[INFO] 	default_component_owner: none
+[INFO] Computing likely owner for 10276 [8e15a87f500ff0686a064ed075ef1bf0]:
+[INFO] 	default_component_owner: none
+[INFO] Computing likely owner for 10277 [0c7fda478534983bd3bb89e1ae3d0a66]:
+[INFO] 	default_component_owner: none

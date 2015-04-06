@@ -1,0 +1,17 @@
+/usr/local/cov-analysis-7.6.0/bin/cov-analyze --dir /home/nmedghal/coverity-idirs/ProjectTesting17 --include-java -j auto --disable-webapp-security --strip-path /home/nmedghal/work/ece653 --all --preview --concurrency --security --symbian --enable-parse-warnings --rule --enable-fnptr --enable-fb 
+
+FindBugs time: 00:00:03
+Analysis summary report:
+------------------------
+Files analyzed                 : 1
+Total LoC input to cov-analyze : 218
+Functions analyzed             : 20
+Paths analyzed                 : 305
+Time taken by analysis         : 00:00:16
+Defect occurrences found       : 1 RESOURCE_LEAK
+
+FindBugs Checkers: 5 errors
+           FB.DM_DEFAULT_ENCODING           1
+                       FB.DM_EXIT           2
+    FB.SIC_INNER_SHOULD_BE_STATIC           1
+ FB.VA_FORMAT_STRING_USES_NEWLINE           1

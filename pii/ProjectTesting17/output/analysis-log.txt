@@ -1,0 +1,68 @@
+cmdline: command line: /usr/local/cov-analysis-7.6.0/bin/cov-analyze --dir /home/nmedghal/coverity-idirs/ProjectTesting17 --include-java -j auto --disable-webapp-security --strip-path /home/nmedghal/work/ece653 --all --preview --concurrency --security --symbian --enable-parse-warnings --rule --enable-fnptr --enable-fb 
+cmdline: parsed cmdline: [
+cmdline:   { name: "dir", args: [ "/home/nmedghal/coverity-idirs/ProjectTesting17" ] },
+cmdline:   { name: "include-java" },
+cmdline:   { name: "jobs", args: [ "auto" ] },
+cmdline:   { name: "disable-webapp-security" },
+cmdline:   { name: "strip-path", args: [ "/home/nmedghal/work/ece653" ] },
+cmdline:   { name: "all" },
+cmdline:   { name: "preview" },
+cmdline:   { name: "concurrency" },
+cmdline:   { name: "security" },
+cmdline:   { name: "symbian" },
+cmdline:   { name: "enable-parse-warnings" },
+cmdline:   { name: "rule" },
+cmdline:   { name: "enable-fnptr" },
+cmdline:   { name: "enable-fb" },
+cmdline:   { name: "config", args: [ "/usr/local/cov-analysis-7.6.0/config/coverity_config.xml" ] },
+cmdline: ]
+startup: am_pid=10056
+startup: detected platform: Linux 2.6.18-402.el5 x86_64
+startup: target platform: linux64
+startup: Detected 8 logical cpus
+startup: Detected 8 cpu cores
+startup: host name: eceLinux3.uwaterloo.ca
+startup: user name: nmedghal
+startup: Analysis version: 7.6.0 (9b77a50df0 p-harmony-push-21098.563)
+startup: temp directory: /tmp/cov-nmedghal/82b2c51d860cf580c13d7feeca6a05cc
+startup: enable_constraint_fpp=0
+startup: current time: 2015-Apr-06 11:10:49
+startup: Detected amount of memory: 32687176kb
+startup: Limiting memory to 29418458kb
+startup: mem limit: current limit of 5644288000 is already less than or equal to desired value of 30124500992; skipping
+cicx: Running: /usr/local/cov-analysis-7.6.0/bin/cov-internal-calc-xrefs --emit /home/nmedghal/coverity-idirs/ProjectTesting17/emit --output /home/nmedghal/coverity-idirs/ProjectTesting17/output/merged-xrefs --strip-path /home/nmedghal/work/ece653 --no-timestamp --ticker-mode=no-spin --tus-file /home/nmedghal/coverity-idirs/ProjectTesting17/output/tus
+wlink: Skipping web-app linking, no archives
+emitdb: callgraph.cpp:2056 11111111
+emitdb: callgraph.cpp:2077 11000011
+emitdb: callgraph.cpp:2098 11000011
+rta: RTA discarded 166233 functions
+emitdb: callgraph.cpp:2108 11000000
+dataflow-directives: Optimizing dataflow configuration
+general: Starting analysis
+Using FindBugs 3.0.0-dev-20140429-1103397
+
+Scanning archives (2 / 2)
+2 analysis passes to perform
+Pass 1: Analyzing classes (38 / 38) - 100% complete
+Pass 2: Analyzing classes (4 / 4) - 100% complete
+Done with analysis
+dm-access-lib: AM listening for DM at 127.0.0.1:47065
+dm-access-lib: AM starting DM with command line: /usr/local/cov-analysis-7.6.0/bin/cov-internal-dm --AM-port 47065 --log-file /home/nmedghal/coverity-idirs/ProjectTesting17/output/distributor.log -j 8 --AW-timeout 36000 /usr/local/cov-analysis-7.6.0/bin/cov-analyze --worker
+dm-access-lib: DM started: dm_pid=10102
+dm-access-lib: AM got connection from DM: (local) 127.0.0.1:47065 - 127.0.0.1:48740 (remote)
+summary: Analysis summary report:
+summary: ------------------------
+summary: Files analyzed                 : 1
+summary: Total LoC input to cov-analyze : 218
+summary: Functions analyzed             : 20
+summary: Paths analyzed                 : 305
+summary: Time taken by analysis         : 00:00:16
+summary: Defect occurrences found       : 1 RESOURCE_LEAK
+summary: 
+summary: Number of functions: 20
+summary: out_of_memory count: 0
+summary: paths_exceeded count: 0
+summary: recoverable failures: 0
+mem: AM peak mem bytes: 235204608
+assert: suppressed asserts: workers=0, master=0
+failures: recoverable failures: workers=0, master=0
