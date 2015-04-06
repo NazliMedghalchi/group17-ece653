@@ -183,9 +183,11 @@ public class BugDetection {
                         break;
                 }
             } // end of while (finished reading callgraph)
+            processOutput.close();
         } catch (Exception ex) {
             System.err.println("Error: Error encountered in parsing call graph: " + ex.getMessage());
             ex.printStackTrace();
+            processOutput.close();
             System.exit(-1);
         }
              
